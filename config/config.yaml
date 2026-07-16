@@ -1,0 +1,83 @@
+# Edit this file for your local run. config.example.yaml keeps the reference defaults.
+
+run:
+  # Number of task instances to run concurrently.
+  parallelism: 4
+
+  # Relative output directory for run artifacts. Do not use reserved package
+  # paths such as benchmark_suite/, config/ or src/.
+  output_dir: runs
+
+  # Per script timeout for task/run.sh and evaluation/evaluate.sh.
+  timeout_sec: 3600
+
+  # Optional subset. Leave empty to run every task instance.
+  # Task instances can be referenced by bare task instance ids.
+  task_instances: []
+
+agent:
+  # claude-code, openclaw, or hermes.
+  type: claude-code
+
+  # no-skill or with-skill.
+  mode: no-skill
+
+  # Agent model name understood by the selected adapter/provider.
+  model: ""
+
+  # OpenAI/Anthropic-compatible endpoint used by the selected agent adapter.
+  base_url: ""
+
+  # Name of an environment variable that contains the agent API key.
+  api_key_env: ""
+
+judge:
+  # OpenAI-compatible endpoint used by payskills-judge.
+  base_url: ""
+
+  # Name of an environment variable that contains the judge API key.
+  api_key_env: ""
+
+  model: ""
+
+env:
+  # Extra environment variables copied into every task instance process.
+  # CUSTOM_FLAG: value
+
+runtime_inputs:
+  # Runtime-only inputs requested by selected task instances. Keep real secrets
+  # outside the benchmark suite; use source=file or source=env.
+  #
+  # Example using a local JSON file:
+  # alipay_sandbox:
+  #   schema: alipay.sandbox.v1
+  #   source: file
+  #   path: ../secrets/alipay-sandbox-keys.json
+  # The JSON uses top-level seller_id for the merchant PID; it is distinct from app_id.
+  # The task instance decides whether this is also copied into /workspace.
+  #
+  # Example using variables from .env:
+  # alipay_sandbox:
+  #   schema: alipay.sandbox.v1
+  #   source: env
+  #   app_id_env: ALIPAY_APP_ID
+  #   seller_id_env: ALIPAY_SELLER_ID
+  #   gateway_env: ALIPAY_GATEWAY
+  #   merchant_private_key_pkcs8_env: ALIPAY_MERCHANT_PRIVATE_KEY_PKCS8
+  #   merchant_private_key_pkcs1_env: ALIPAY_MERCHANT_PRIVATE_KEY_PKCS1
+  #   alipay_public_key_env: ALIPAY_PUBLIC_KEY
+  #   sandbox_buyer_account_env: ALIPAY_SANDBOX_BUYER_ACCOUNT
+  #   sandbox_buyer_login_password_env: ALIPAY_SANDBOX_BUYER_LOGIN_PASSWORD
+  #   sandbox_buyer_pay_password_env: ALIPAY_SANDBOX_BUYER_PAY_PASSWORD
+  #   miniapp_app_id_env: ALIPAY_MINIAPP_APP_ID
+  #   op_app_id_env: ALIPAY_OP_APP_ID
+  # The task instance decides whether this is also copied into /workspace.
+
+docker:
+  enabled: true
+
+  # When build is true, the runner builds task/Dockerfile for each task instance.
+  # When build is false, set image to an existing local image.
+  build: true
+  image: ""
+  network: ""

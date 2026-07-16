@@ -1,0 +1,187 @@
+{
+  "rubrics": [
+    {
+      "id": "a2m_dep_sdk",
+      "name": "S1 接入支付客户端能力",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_config_env",
+      "name": "S2 支付配置来自运行时配置",
+      "dimension": "security",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.333333333333,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_secret_safe",
+      "name": "S3 不提交真实密钥",
+      "dimension": "security",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.333333333333,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_stable_endpoint",
+      "name": "S4 保留固定 API 入口",
+      "dimension": "compatibility",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.333333333333,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_build_runtime",
+      "name": "I1 服务可构建启动",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "source_phase": "build",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_public_list_unchanged",
+      "name": "I2 食谱列表仍公开",
+      "dimension": "compatibility",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_402_challenge",
+      "name": "I3 无凭证返回 402 且不泄露内容",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_payment_needed_header",
+      "name": "I4 Payment-Needed 可被客户端使用",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_verify_proof",
+      "name": "I5 服务端调用网关验证凭证",
+      "dimension": "security",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_verify_challenge_binding",
+      "name": "I5b 验证绑定本次支付请求",
+      "dimension": "security",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_release_resource",
+      "name": "I6 验证成功后返回完整资源",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_confirm_fulfillment",
+      "name": "I7 履约成功后确认",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_payment_challenge_shape",
+      "name": "U1 支付要求结构完整",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_multi_resource_basic",
+      "name": "I8 多个付费资源均受保护",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_multi_resource_release",
+      "name": "I9 多资源验证成功后可交付",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_verify_failure_rejects",
+      "name": "U2 验证失败 fail-closed",
+      "dimension": "security",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_ambiguous_verify_rejects",
+      "name": "U3 状态不明确时 fail-closed",
+      "dimension": "security",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.142857142857,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_dep_sdk_llm",
+      "name": "L1 LLM审查：真实验证而非本地放行",
+      "dimension": "security",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.333333333333,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_verify_proof_llm",
+      "name": "L2 LLM审查：验证路径 fail-closed",
+      "dimension": "security",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.333333333333,
+      "max_score": 1.0
+    },
+    {
+      "id": "a2m_confirm_fulfillment_llm",
+      "name": "L3 LLM审查：存在履约确认路径",
+      "dimension": "functionality",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.333333333333,
+      "max_score": 1.0
+    }
+  ],
+  "metadata": {
+    "scoring_policy": "legacy_a2m_basic_weighted_v1"
+  }
+}

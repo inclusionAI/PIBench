@@ -1,0 +1,123 @@
+{
+  "rubrics": [
+    {
+      "id": "static.project_structure",
+      "name": "Bill Express 项目结构与启动入口完整",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2
+    },
+    {
+      "id": "static.sdk_or_rsa2_capability",
+      "name": "具备支付宝 SDK/OpenAPI/RSA2 签名验签能力",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2
+    },
+    {
+      "id": "static.no_hardcoded_private_key",
+      "name": "业务源码不硬编码真实私钥",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2
+    },
+    {
+      "id": "static.secret_gitignore",
+      "name": "敏感配置与构建产物被 gitignore 排除",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2
+    },
+    {
+      "id": "static.no_app_internal_mock_shortcut",
+      "name": "业务 app 内无 mock 支付成功捷径",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2
+    },
+    {
+      "id": "integ.app_start",
+      "name": "项目可通过 start.sh 构建并启动",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.25
+    },
+    {
+      "id": "integ.invoice_create",
+      "name": "可创建 POS invoice",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.25
+    },
+    {
+      "id": "integ.payment_endpoint_exists",
+      "name": "支付入口 API 存在且不是空接口",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.25
+    },
+    {
+      "id": "integ.correct_product_method",
+      "name": "调用正确支付宝产品 API",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.25
+    },
+    {
+      "id": "integ.out_trade_no_bound",
+      "name": "支付单号绑定 invoice",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.25
+    },
+    {
+      "id": "integ.amount_bound",
+      "name": "支付金额绑定 invoice grand_total",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.25
+    },
+    {
+      "id": "integ.query_or_status_endpoint",
+      "name": "查询/状态接口存在",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.25
+    },
+    {
+      "id": "integ.gateway_call_recorded",
+      "name": "测试侧网关记录到实际调用",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.25
+    },
+    {
+      "id": "e2e.login_works",
+      "name": "收银台基础鉴权/健康检查可用",
+      "type": "deterministic",
+      "source_phase": "e2e",
+      "weight": 1.0
+    },
+    {
+      "id": "e2e.pos_flow_to_payment_entry",
+      "name": "创建 bill 后可进入对应支付宝支付页/入口",
+      "type": "deterministic",
+      "source_phase": "e2e",
+      "weight": 1.0
+    },
+    {
+      "id": "llm.product_mapping",
+      "name": "语义上选择了正确支付宝产品 API",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.5
+    },
+    {
+      "id": "llm.success_criteria",
+      "name": "语义上不把页面跳转/同步返回当最终成功",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.5
+    }
+  ]
+}

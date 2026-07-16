@@ -1,0 +1,166 @@
+{
+  "rubrics": [
+    {
+      "id": "static.dep_sdk",
+      "name": "支付宝 SDK 或 RSA2 能力",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "static.secret_storage",
+      "name": "无真实密钥或 token 硬编码",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "static.secret_gitignore",
+      "name": ".gitignore 排除敏感材料",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "static.no_app_internal_mock",
+      "name": "无业务内置 mock 网关和 demo 控件",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "static.gateway_env",
+      "name": "支付宝网关由环境变量注入",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "integ.dep_build",
+      "name": "项目可构建并启动",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.285714285714
+    },
+    {
+      "id": "integ.sign_entry",
+      "name": "签约入口可调用",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.285714285714
+    },
+    {
+      "id": "integ.method_app_pay",
+      "name": "使用 alipay.trade.app.pay 发起签约",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.285714285714
+    },
+    {
+      "id": "integ.sign_notify_accept",
+      "name": "有效签约通知推进签约状态",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.285714285714
+    },
+    {
+      "id": "integ.agreement_persisted",
+      "name": "协议号和 external_agreement_no 可观察落库",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.285714285714
+    },
+    {
+      "id": "integ.method_trade_pay",
+      "name": "使用 alipay.trade.pay 发起周期扣款",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.285714285714
+    },
+    {
+      "id": "integ.pay_notify_success",
+      "name": "有效支付通知形成 active + TRADE_SUCCESS",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.285714285714
+    },
+    {
+      "id": "e2e.pricing_page",
+      "name": "pricing 页面可访问",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "frontend",
+      "max_score": 1,
+      "weight": 0.666666666667
+    },
+    {
+      "id": "e2e.subscribe_entry",
+      "name": "存在自然支付宝订阅入口",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "frontend",
+      "max_score": 1,
+      "weight": 0.666666666667
+    },
+    {
+      "id": "e2e.status_observable",
+      "name": "订阅状态 API 可观察",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "frontend",
+      "max_score": 1,
+      "weight": 0.666666666667
+    },
+    {
+      "id": "llm.L1_sign_deduct_separation",
+      "name": "签约与扣款职责分离",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "llm.L2_config_secret_management",
+      "name": "配置和密钥管理",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "llm.L3_no_sync_return_final",
+      "name": "同步返回不作为最终成功",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.333333333333
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[task_instance]
+name = "Litemall-PCWebPayment-advanced"
+display_name = "支付宝电脑网站支付安全与鲁棒性加固"
+description = "在已有基础支付的 litemall 上加固：通知验签、字段校验、幂等、退款、退款查询、查询补偿、关单、密钥管理。"
+difficulty = "hard"
+project = "Litemall"
+product = "PCWebPayment"
+scenario = "advanced"
+timeout_sec = 3600
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]
+
+[[runtime_inputs]]
+id = "alipay_sandbox"
+schema = "alipay.sandbox.v1"
+required = true
+deliver_as = "file"
+env = "ALIPAY_SANDBOX_KEYS_FILE"
+workspace_path = "alipay-sandbox-keys.json"

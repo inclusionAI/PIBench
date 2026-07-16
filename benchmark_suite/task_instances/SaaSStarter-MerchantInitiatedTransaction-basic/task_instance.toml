@@ -1,0 +1,16 @@
+[task_instance]
+name = "SaaSStarter-MerchantInitiatedTransaction-basic"
+display_name = "SaaS Starter 商家扣款订阅基础接入"
+description = "在 SaaS Starter 订阅项目中完成支付宝商家扣款风格的签约与周期扣款基础闭环，使用测试侧 Python mock 支付宝网关。"
+difficulty = "standard"
+project = "SaaSStarter"
+product = "MerchantInitiatedTransaction"
+scenario = "basic"
+timeout_sec = 1800
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]

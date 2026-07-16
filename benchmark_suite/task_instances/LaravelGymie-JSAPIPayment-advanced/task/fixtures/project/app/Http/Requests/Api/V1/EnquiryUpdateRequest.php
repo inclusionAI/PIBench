@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Requests\Api\V1;
+
+use App\Http\Requests\Concerns\ResolvesRouteKey;
+use App\Services\Api\Schemas\EnquirySchema;
+use Illuminate\Foundation\Http\FormRequest;
+
+/**
+ * Update enquiry request.
+ */
+class EnquiryUpdateRequest extends FormRequest
+{
+    use ResolvesRouteKey;
+
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        $enquiryId = $this->routeKey('enquiry');
+
+        return EnquirySchema::updateRules($enquiryId);
+    }
+}

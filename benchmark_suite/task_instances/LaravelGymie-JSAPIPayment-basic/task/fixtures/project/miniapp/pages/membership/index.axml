@@ -1,0 +1,47 @@
+<view class="page">
+  <view class="header">
+    <view class="kicker">Gymie Club</view>
+    <view class="title">Membership Cards</view>
+    <view class="subtitle">Choose a card and create a mobile mini program order.</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">Plans</view>
+    <view class="plan-list">
+      <block a:for="{{plans}}" a:key="id">
+        <view
+          class="{{selectedPlanId == item.id ? 'plan-card selected' : 'plan-card'}}"
+          data-id="{{item.id}}"
+          onTap="selectPlan"
+        >
+          <view class="plan-main">
+            <view class="plan-name">{{item.name}}</view>
+            <view class="plan-days">{{item.days}} days</view>
+          </view>
+          <view class="plan-price">CNY {{item.amount}}</view>
+          <view class="plan-description">{{item.description}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">Buyer</view>
+    <input class="input" data-field="buyerName" value="{{form.buyerName}}" placeholder="Name" onInput="handleInput" />
+    <input class="input" data-field="buyerContact" value="{{form.buyerContact}}" placeholder="Phone" onInput="handleInput" />
+    <input class="input" data-field="buyerEmail" value="{{form.buyerEmail}}" placeholder="Email" onInput="handleInput" />
+  </view>
+
+  <view class="section order-panel">
+    <view class="status">{{statusText}}</view>
+    <view a:if="{{order}}" class="order-lines">
+      <view>Order: {{order.checkout_no}}</view>
+      <view>Status: {{order.status}}</view>
+      <view>Amount: CNY {{order.amount}}</view>
+    </view>
+
+    <button class="primary-button" loading="{{creating}}" disabled="{{creating}}" onTap="createOrder">
+      Create Order
+    </button>
+  </view>
+</view>

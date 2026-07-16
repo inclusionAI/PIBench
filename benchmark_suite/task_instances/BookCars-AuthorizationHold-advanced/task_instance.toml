@@ -1,0 +1,24 @@
+[task_instance]
+name = "BookCars-AuthorizationHold-advanced"
+display_name = "支付宝预授权 — 安全与鲁棒性加固"
+description = "在已有预授权冻结的 BookCars 上补齐：通知验签、冻结转支付、解冻、撤销/解冻边界、轮询、幂等。"
+difficulty = "medium"
+project = "BookCars"
+product = "AuthorizationHold"
+scenario = "advanced"
+timeout_sec = 3600
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]
+
+[[runtime_inputs]]
+id = "alipay_sandbox"
+schema = "alipay.sandbox.v1"
+required = true
+deliver_as = "file"
+env = "ALIPAY_SANDBOX_KEYS_FILE"
+workspace_path = "alipay-sandbox-keys.json"

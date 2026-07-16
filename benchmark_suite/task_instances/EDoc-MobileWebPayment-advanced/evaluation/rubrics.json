@@ -1,0 +1,228 @@
+{
+  "rubrics": [
+    {
+      "id": "static.wap_safety_dep_sdk",
+      "spec_id": "S1",
+      "group": "static",
+      "name": "支付/查单/退款能力存在",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.25
+    },
+    {
+      "id": "static.wap_no_fake_bypass",
+      "spec_id": "S2",
+      "group": "static",
+      "name": "无 fake 成功绕过（静态）",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.25
+    },
+    {
+      "id": "static.wap_state_machine_model",
+      "spec_id": "S3",
+      "group": "static",
+      "name": "支付状态模型完整",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.25
+    },
+    {
+      "id": "static.wap_secret_safe_safety",
+      "spec_id": "S4",
+      "group": "static",
+      "name": "未提交真实密钥/敏感 .env",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.25
+    },
+    {
+      "id": "it.wap_return_not_final",
+      "spec_id": "I1",
+      "group": "integration",
+      "name": "前台回跳不可信（return 后仍 pending）",
+      "dimension": "safety",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_return_not_final",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_quit_url_flow",
+      "spec_id": "I2",
+      "group": "integration",
+      "name": "退出不误判（quit 后仍 pending）",
+      "dimension": "safety",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_quit_url_flow",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_notify_verify_fields",
+      "spec_id": "I3",
+      "group": "integration",
+      "name": "通知字段校验（伪造均拒绝）",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_notify_verify_fields",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_mock_signature_not_prod_bypass",
+      "spec_id": "I14",
+      "group": "integration",
+      "name": "mock 签名不能成为非 mock 绕过",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_mock_signature_not_prod_bypass",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_notify_accept_paid",
+      "spec_id": "I4",
+      "group": "integration",
+      "name": "有效通知确认 paid 且幂等",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_notify_accept_paid_and_idempotent",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_notify_missing_query",
+      "spec_id": "I5",
+      "group": "integration",
+      "name": "查单补偿（sync 成功推进 paid）",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_notify_missing_query_compensation",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_processing_polling",
+      "spec_id": "I6",
+      "group": "integration",
+      "name": "处理中状态保持 pending",
+      "dimension": "safety",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_processing_polling_keeps_pending",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_no_repeat_pay_before_confirm",
+      "spec_id": "I7",
+      "group": "integration",
+      "name": "防重复支付（复用原入口）",
+      "dimension": "safety",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_no_repeat_pay_before_confirm",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_partial_refund_idempotency",
+      "spec_id": "I8",
+      "group": "integration",
+      "name": "部分退款幂等 + 超额拒绝",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_partial_refund_idempotency_and_over_refund",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_refund_response_verify",
+      "spec_id": "I9",
+      "group": "integration",
+      "name": "退款不只看成功码（无资金变更不记账）",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_refund_response_verify_not_code_only",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_refund_unsafe_success_fields",
+      "spec_id": "I10",
+      "group": "integration",
+      "name": "退款成功码字段不可信（字段异常不记账）",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_refund_success_code_with_unsafe_fields_not_accounted",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_terminal_refund_state_guard",
+      "spec_id": "I11",
+      "group": "integration",
+      "name": "终态保护（退款后不被晚到事件降级）",
+      "dimension": "safety",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_terminal_refund_state_not_downgraded_by_late_events",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_unpaid_refund_rejected",
+      "spec_id": "I12",
+      "group": "integration",
+      "name": "未支付预约禁止退款",
+      "dimension": "safety",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_unpaid_appointment_refund_rejected",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "it.wap_refund_query_writeback_idempotent",
+      "spec_id": "I13",
+      "group": "integration",
+      "name": "退款查询成功回写且幂等",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 2,
+      "test": "test_wap_refund_query_success_writeback_idempotent",
+      "weight": 0.142857142857
+    },
+    {
+      "id": "llm.wap_no_fake_bypass",
+      "spec_id": "L1",
+      "group": "llm",
+      "name": "代码审查：无支付/通知/退款绕过",
+      "dimension": "security",
+      "type": "llm_assisted",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "llm.wap_query_compensation",
+      "spec_id": "L2",
+      "group": "llm",
+      "name": "代码审查：未知状态有补偿路径",
+      "dimension": "safety",
+      "type": "llm_assisted",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "llm.wap_amount_accounting_rule",
+      "spec_id": "L3",
+      "group": "llm",
+      "name": "代码审查：金额口径不混用",
+      "dimension": "functionality",
+      "type": "llm_assisted",
+      "max_score": 1,
+      "weight": 0.333333333333
+    }
+  ]
+}

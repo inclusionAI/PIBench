@@ -1,0 +1,101 @@
+from pathlib import Path
+from typing import Any, Dict, Optional
+
+from payskills_runtime.agent.artifacts import relative_to_output
+
+
+def build_agent_run_record(
+    *,
+    turn_id: str,
+    returncode: int,
+    turn_dir: Path,
+    raw_events_path: Path,
+    events_path: Path,
+    event_trace_quality: str,
+    usage: Dict[str, Any],
+) -> Dict[str, Any]:
+    return {
+        "turn_id": turn_id,
+        "returncode": returncode,
+        "input": str(turn_dir / "input.txt"),
+        "effective_input": str(turn_dir / "effective_input.txt"),
+        "raw_stdout": str(turn_dir / "raw_stdout.txt"),
+        "raw_stderr": str(turn_dir / "raw_stderr.txt"),
+        "output": str(turn_dir / "output.txt"),
+        "raw_events": str(raw_events_path),
+        "events": str(events_path),
+        "event_trace_quality": event_trace_quality,
+        "usage": usage,
+    }
+
+
+def build_agent_trace_turn(
+    *,
+    turn_id: str,
+    turn_index: int,
+    agent_type: str,
+    model: str,
+    session_id: str,
+    returncode: int,
+    started_at: str,
+    ended_at: str,
+    duration_ms: int,
+    turn_dir: Path,
+    output_dir: Path,
+    turn_message: str,
+    effective_input: str,
+    include_system_instruction: bool,
+    raw_stdout_path: Path,
+    raw_stderr_path: Path,
+    raw_stdout_text: str,
+    raw_stderr_text: str,
+    raw_events_path: Path,
+    events_path: Path,
+    provider_trace_path: Optional[Path],
+    provider_trace_source: str,
+    provider_event_count: int,
+    visible: str,
+    event_count: int,
+    raw_event_count: int,
+    raw_event_parse_kind: str,
+    event_trace_quality: str,
+    usage: Dict[str, Any],
+) -> Dict[str, Any]:
+    return {
+        "turn_id": turn_id,
+        "turn_index": turn_index,
+        "agent_type": agent_type,
+        "model": model,
+        "session_id": session_id,
+        "returncode": returncode,
+        "started_at": started_at,
+        "ended_at": ended_at,
+        "duration_ms": duration_ms,
+        "input": {
+            "path": relative_to_output(turn_dir / "input.txt", output_dir),
+            "text": turn_message,
+        },
+        "effective_input": {
+            "path": relative_to_output(turn_dir / "effective_input.txt", output_dir),
+            "text": effective_input,
+        },
+        "system_instruction_included": include_system_instruction,
+        "raw_stdout": relative_to_output(raw_stdout_path, output_dir),
+        "raw_stderr": relative_to_output(raw_stderr_path, output_dir),
+        "raw_stdout_text": raw_stdout_text,
+        "raw_stderr_text": raw_stderr_text,
+        "raw_events_jsonl": relative_to_output(raw_events_path, output_dir),
+        "events_jsonl": relative_to_output(events_path, output_dir),
+        "provider_trace_jsonl": relative_to_output(provider_trace_path, output_dir) if provider_trace_path else None,
+        "provider_trace_source": provider_trace_source or None,
+        "provider_event_count": provider_event_count,
+        "visible_output": {
+            "path": relative_to_output(turn_dir / "output.txt", output_dir),
+            "text": visible,
+        },
+        "event_count": event_count,
+        "raw_event_count": raw_event_count,
+        "raw_event_parse_kind": raw_event_parse_kind,
+        "event_trace_quality": event_trace_quality,
+        "usage": usage,
+    }

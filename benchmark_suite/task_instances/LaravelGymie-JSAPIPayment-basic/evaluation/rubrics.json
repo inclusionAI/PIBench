@@ -1,0 +1,212 @@
+{
+  "rubrics": [
+    {
+      "id": "static.jsapi_dep_sdk",
+      "name": "SDK/OpenAPI 客户端接入",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_config_env",
+      "name": "支付配置来自运行时配置",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_secret_safe",
+      "name": "不提交真实密钥",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_provider_model",
+      "name": "支付方式接入订单模型",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_miniapp_pay_call",
+      "name": "小程序端存在原生支付调用",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_build_runtime",
+      "name": "服务可构建启动",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_miniapp_product_visible",
+      "name": "会员卡商品可购买",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_create_payment_trade",
+      "name": "创建会员卡支付交易",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_trade_no_case",
+      "name": "交易字段大小写正确",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.logic_api",
+      "name": "调用支付宝交易创建接口",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_product_mapping",
+      "name": "产品映射正确",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_op_app_id",
+      "name": "小程序应用身份正确关联",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_order_trade_binding",
+      "name": "交易绑定当前会员订单",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.notify_endpoint",
+      "name": "异步通知入口存在且拒绝无效通知",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_signed_non_success_notify_not_paid",
+      "name": "合法签名但非成功支付状态不得履约",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_signed_mismatch_notify_not_paid",
+      "name": "合法签名但金额或应用不匹配不得履约",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_notify_or_query_confirm",
+      "name": "服务端可信结果推进订单并完成履约",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "integration.jsapi_notify_idempotent_no_double_fulfillment",
+      "name": "重复成功通知不重复履约",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.153846153846
+    },
+    {
+      "id": "miniapp.jsapi_miniapp_product_visible",
+      "name": "会员卡购买页保留",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "miniapp.jsapi_my_trade_pay",
+      "name": "小程序端可唤起支付",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "miniapp.jsapi_client_result_not_final",
+      "name": "前端结果不做终态",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "judge.jsapi_dep_sdk",
+      "name": "接入真实客户端能力",
+      "dimension": "code_quality",
+      "type": "llm_assisted",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "judge.logic_api",
+      "name": "JSAPI 产品参数正确",
+      "dimension": "code_quality",
+      "type": "llm_assisted",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "judge.jsapi_secret_safe",
+      "name": "密钥处理安全",
+      "dimension": "code_quality",
+      "type": "llm_assisted",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "judge.jsapi_provider_model",
+      "name": "支付状态与交易标识可持久化",
+      "dimension": "code_quality",
+      "type": "llm_assisted",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "judge.jsapi_stable_endpoint",
+      "name": "保留固定接口入口",
+      "dimension": "code_quality",
+      "type": "llm_assisted",
+      "max_score": 1,
+      "weight": 0.2
+    }
+  ]
+}

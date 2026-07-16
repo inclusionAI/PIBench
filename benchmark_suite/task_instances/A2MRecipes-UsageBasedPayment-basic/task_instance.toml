@@ -1,0 +1,16 @@
+[task_instance]
+name = "A2MRecipes-UsageBasedPayment-basic"
+display_name = "AI收基础接入：付费食谱详情访问闭环"
+description = "在 Next.js 食谱服务上接入 AI收：无凭证访问付费详情返回 402+Payment-Needed，携带 Payment-Proof 经服务端验证后返回完整内容并完成履约确认，验证失败 fail-closed"
+difficulty = "standard"
+project = "A2MRecipes"
+product = "UsageBasedPayment"
+scenario = "basic"
+timeout_sec = 3600
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]

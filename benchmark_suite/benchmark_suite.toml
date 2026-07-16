@@ -1,0 +1,34 @@
+[benchmark_suite]
+name = "Alipay-PIBench"
+description = "Benchmark suite for evaluating AI agents on Alipay product integration tasks across basic and advanced scenarios."
+runtime_version = "v2"
+llm_assisted_eval = true
+
+[[modes]]
+id = "with-skill"
+name = "With Skill"
+description = "Inject the Alipay integration skill."
+default = true
+
+[[modes]]
+id = "no-skill"
+name = "No Skill"
+description = "Run without injecting the skill."
+default = true
+
+[[options]]
+id = "inject_skill_name"
+name = "Inject Skill Name"
+description = "In with-skill mode, prefix the task instruction with /skill-name to force skill triggering."
+type = "bool"
+default = false
+env_var = "INJECT_SKILL_NAME"
+
+[[options]]
+id = "agent_type"
+name = "Agent Type"
+description = "Agent adapter used to run task instances."
+type = "select"
+choices = ["claude-code", "openclaw", "hermes"]
+default = "claude-code"
+env_var = "AGENT_TYPE"

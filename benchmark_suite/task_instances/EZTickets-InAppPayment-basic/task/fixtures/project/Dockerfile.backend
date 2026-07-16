@@ -1,0 +1,8 @@
+FROM node:18-bullseye
+
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace/ez_tickets/ez_tickets_backend

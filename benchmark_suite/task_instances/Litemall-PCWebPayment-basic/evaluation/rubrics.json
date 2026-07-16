@@ -1,0 +1,166 @@
+{
+  "rubrics": [
+    {
+      "id": "static.sdk_dependency",
+      "name": "SDK 依赖 (alipay-sdk-java)",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "static.secret_no_hardcode",
+      "name": "无硬编码私钥",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "static.secret_gitignore",
+      "name": ".gitignore 排除敏感文件",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "integ.app_boot",
+      "name": "应用构建启动",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.order_flow_intact",
+      "name": "下单流程正常",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.prepay_form",
+      "name": "prepay 返回支付宝表单",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.prepay_gateway_url",
+      "name": "表单指向支付宝网关",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.prepay_product_code",
+      "name": "产品码正确",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.prepay_order_binding",
+      "name": "prepay 绑定真实订单",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.prepay_does_not_mark_paid",
+      "name": "prepay 不提前履约",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.notify_endpoint_exists",
+      "name": "notify 端点存在",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.notify_processes_success",
+      "name": "notify 处理成功",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.notify_updates_only_target",
+      "name": "notify 只更新对应订单",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "integ.logic_api",
+      "name": "使用正确的支付宝 API (page.pay)",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.181818181818
+    },
+    {
+      "id": "E1",
+      "name": "Payment page shows Alipay option",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 1.0
+    },
+    {
+      "id": "E2",
+      "name": "Alipay payment redirect",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 1.0
+    },
+    {
+      "id": "L1",
+      "name": "SDK 调用模式",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.5
+    },
+    {
+      "id": "L2",
+      "name": "前端表单提交",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.5
+    }
+  ]
+}

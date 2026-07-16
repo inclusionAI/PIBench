@@ -1,0 +1,39 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "strict": true,
+    "jsx": "react-native",
+    "typeRoots": [
+      "./types"
+    ],
+    "rootDir": "./",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      ":bookcars-types": [
+        "../packages/bookcars-types"
+      ],
+      ":bookcars-helper": [
+        "../packages/bookcars-helper"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../packages/bookcars-types"
+    },
+    {
+      "path": "../packages/bookcars-helper"
+    }
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
+}

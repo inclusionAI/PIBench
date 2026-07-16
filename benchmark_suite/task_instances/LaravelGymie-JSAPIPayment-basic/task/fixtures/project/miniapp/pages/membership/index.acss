@@ -1,0 +1,174 @@
+.page {
+  min-height: 100vh;
+  padding: 28rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 28rpx 0 20rpx;
+}
+
+.kicker {
+  color: #0f766e;
+  font-size: 24rpx;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-top: 8rpx;
+  font-size: 48rpx;
+  line-height: 1.12;
+  font-weight: 800;
+}
+
+.subtitle {
+  margin-top: 14rpx;
+  color: #5b6472;
+  font-size: 27rpx;
+  line-height: 1.45;
+}
+
+.section {
+  margin-top: 22rpx;
+  padding: 24rpx;
+  background: #ffffff;
+  border: 1rpx solid #e5e7eb;
+  border-radius: 8rpx;
+}
+
+.section-title {
+  margin-bottom: 18rpx;
+  color: #111827;
+  font-size: 30rpx;
+  font-weight: 750;
+}
+
+.plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.plan-card {
+  padding: 22rpx;
+  border: 2rpx solid #e5e7eb;
+  border-radius: 8rpx;
+  background: #fbfbfc;
+}
+
+.plan-card.selected {
+  border-color: #0f766e;
+  background: #f0fdfa;
+}
+
+.plan-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.plan-name {
+  font-size: 30rpx;
+  font-weight: 750;
+}
+
+.plan-days {
+  color: #6b7280;
+  font-size: 24rpx;
+}
+
+.plan-price {
+  margin-top: 12rpx;
+  color: #0f766e;
+  font-size: 36rpx;
+  font-weight: 800;
+}
+
+.plan-description {
+  margin-top: 10rpx;
+  color: #4b5563;
+  font-size: 25rpx;
+  line-height: 1.4;
+}
+
+.input {
+  height: 82rpx;
+  margin-top: 14rpx;
+  padding: 0 20rpx;
+  border: 1rpx solid #d1d5db;
+  border-radius: 8rpx;
+  background: #ffffff;
+  color: #111827;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.identity-row {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+}
+
+.identity-input {
+  flex: 1;
+}
+
+.ghost-button {
+  min-width: 128rpx;
+  height: 82rpx;
+  margin-top: 14rpx;
+  border: 1rpx solid #0f766e;
+  color: #0f766e;
+  background: #ffffff;
+  font-size: 26rpx;
+}
+
+.auth-code {
+  margin-top: 10rpx;
+  color: #0f766e;
+  font-size: 24rpx;
+}
+
+.order-panel {
+  margin-bottom: 40rpx;
+}
+
+.status {
+  color: #374151;
+  font-size: 27rpx;
+  line-height: 1.4;
+}
+
+.order-lines {
+  margin-top: 16rpx;
+  padding: 18rpx;
+  border-radius: 8rpx;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 23rpx;
+  line-height: 1.65;
+  word-break: break-all;
+}
+
+.primary-button,
+.secondary-button {
+  width: 100%;
+  height: 86rpx;
+  margin-top: 18rpx;
+  font-size: 29rpx;
+  font-weight: 750;
+  border-radius: 8rpx;
+}
+
+.primary-button {
+  color: #ffffff;
+  background: #111827;
+}
+
+.secondary-button {
+  color: #111827;
+  background: #e5e7eb;
+}

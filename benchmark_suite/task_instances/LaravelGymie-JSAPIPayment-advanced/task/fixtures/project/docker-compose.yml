@@ -1,0 +1,29 @@
+services:
+  gymie-jsapi:
+    build:
+      context: .
+    container_name: gymie-jsapi-safety
+    restart: unless-stopped
+    ports:
+      - "8135:8000"
+    environment:
+      APP_NAME: "Gymie Alipay JSAPI"
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: "${GYMIE_APP_URL:-http://127.0.0.1:8135}"
+      APP_LOCALE: en
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/html/storage/app/database.sqlite
+      SESSION_DRIVER: file
+      CACHE_STORE: file
+      QUEUE_CONNECTION: sync
+      MAIL_MAILER: log
+      GYMIE_RESET_DATABASE: "false"
+      ALIPAY_JSAPI_DEMO_MODE: "true"
+      ALIPAY_JSAPI_GATEWAY_URL: "https://openapi-sandbox.dl.alipaydev.com/gateway.do"
+      ALIPAY_JSAPI_NOTIFY_URL: "${ALIPAY_JSAPI_NOTIFY_URL:-http://127.0.0.1:8135/alipay-jsapi/notify}"
+    volumes:
+      - gymie_jsapi_safety_storage:/var/www/html/storage
+
+volumes:
+  gymie_jsapi_safety_storage:

@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+import argparse
+import os
+
+from payskills_runtime.diff import export_workspace_diff, init_workspace_git
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(prog="payskills-diff")
+    sub = parser.add_subparsers(dest="command")
+    init = sub.add_parser("init")
+    init.add_argument("--workspace", default="/workspace")
+    export = sub.add_parser("export")
+    export.add_argument("--workspace", default="/workspace")
+    export.add_argument("--output-dir", default=os.environ.get("PAYSKILLS_ARTIFACTS_DIR", "/output/artifacts"))
+    args = parser.parse_args()
+    if args.command == "init":
+        init_workspace_git(args.workspace)
+        return 0
+    if args.command == "export":
+        export_workspace_diff(args.workspace, args.output_dir)
+        return 0
+    return 2
+
+
+raise SystemExit(main())

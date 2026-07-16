@@ -1,0 +1,13 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+
+/* .grecaptcha-badge { 
+  visibility: hidden !important;
+} */
+
+.github-fork-ribbon::before {
+  background-color: #272727;
+}

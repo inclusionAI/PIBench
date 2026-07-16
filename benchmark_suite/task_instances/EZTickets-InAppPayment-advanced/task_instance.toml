@@ -1,0 +1,24 @@
+[task_instance]
+name = "EZTickets-InAppPayment-advanced"
+display_name = "EZ Tickets 支付宝支付链路安全加固"
+description = "在已有基础支付宝 App Pay 链路上做安全与资金正确性加固：验签、字段与归属校验、查单补偿、防重复支付、退款/部分退款、终态保护、金额口径。"
+difficulty = "hard"
+project = "EZTickets"
+product = "InAppPayment"
+scenario = "advanced"
+timeout_sec = 3600
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]
+
+[[runtime_inputs]]
+id = "alipay_sandbox"
+schema = "alipay.sandbox.v1"
+required = true
+deliver_as = "file"
+env = "ALIPAY_SANDBOX_KEYS_FILE"
+workspace_path = "alipay-sandbox-keys.json"

@@ -1,0 +1,146 @@
+div.footer {
+  width: 100%;
+  min-height: 300px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: #f2f2f2;
+  color: #1a1a1a;
+  border-top: 1px solid #ebebeb;
+  font-size: 13px;
+  padding: 12px;
+  transform: translate3d(0, 0, 0);
+}
+
+div.footer div.header {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+div.footer section.main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  padding-bottom: 80px;
+}
+
+div.footer div.main-section {
+  flex: 1 1 0%;
+}
+
+div.footer div.main-section div.title {
+  text-align: left;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+div.footer ul.links {
+  margin: 0;
+  padding: 0;
+}
+
+div.footer ul.links li {
+  list-style: none;
+  cursor: pointer;
+  margin: 10px 0;
+  width: fit-content;
+}
+
+div.footer ul.links li:hover {
+  /* opacity: 0.85; */
+  text-decoration: underline;
+}
+
+div.footer div.footer-contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0;
+}
+
+div.footer div.footer-contact .icon {
+  color: #525252;
+  margin-right: 5px;
+}
+
+div.footer div.footer-contact a {
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+div.footer div.footer-contact a:hover {
+  /* opacity: 0.85; */
+  text-decoration: underline;
+}
+
+div.footer div.footer-contact .social-icon {
+  color: #525252;
+  /* margin-right: 12px; */
+}
+
+div.footer div.footer-contact .social-icon:hover{
+  color: #1a1a1a;
+}
+
+div.footer div.newsletter {
+  margin-top: 80px;
+}
+
+div.footer section.payment {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  border-top: 1px solid #dbdbdb;
+  padding: 10px 0;
+}
+
+div.footer section.payment div.payment-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (width <=960px) {
+  div.footer section.main {
+    flex-direction: column;
+  }
+
+  div.footer div.main-section {
+    margin: 10px;
+  }
+
+  div.footer section.payment {
+    display: flex;
+    flex-direction: column;
+  }
+
+  div.footer section.payment div.payment-text {
+    margin: 5px 0;
+    padding-left: 8px;
+    align-items: flex-start;
+  }
+
+  div.footer section.payment img {
+    max-width: 100%;
+  }
+}
+
+div.footer section.copyright {
+  width: 100%;
+  padding: 15px 0 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: 1px solid #dbdbdb;
+}
+
+@media only screen and (width >=960px) {
+  div.footer {
+    padding: 12px 10%;
+  }
+}

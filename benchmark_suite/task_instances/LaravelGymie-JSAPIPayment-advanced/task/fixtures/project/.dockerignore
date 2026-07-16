@@ -1,0 +1,13 @@
+.git
+.github
+vendor
+node_modules
+storage/app/*.sqlite
+storage/app/.gymie_seeded
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+._*
+.DS_Store
+npm-debug.log

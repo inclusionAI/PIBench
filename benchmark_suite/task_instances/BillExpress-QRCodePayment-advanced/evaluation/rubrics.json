@@ -1,0 +1,324 @@
+{
+  "rubrics": [
+    {
+      "id": "static.project_structure",
+      "name": "Bill Express 项目结构与启动入口完整",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.125,
+      "max_score": 1
+    },
+    {
+      "id": "static.mock_key_separation",
+      "name": "测试侧 mock key 与真实沙箱材料分离",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.125,
+      "max_score": 1
+    },
+    {
+      "id": "static.no_hardcoded_private_key",
+      "name": "业务源码不硬编码真实私钥",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.125,
+      "max_score": 1
+    },
+    {
+      "id": "static.no_app_internal_mock_shortcut",
+      "name": "业务 app 内无 mock 支付成功捷径",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.125,
+      "max_score": 1
+    },
+    {
+      "id": "static.signature_verification_capability",
+      "name": "具备响应/通知验签能力",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.125,
+      "max_score": 1
+    },
+    {
+      "id": "static.field_binding_capability",
+      "name": "具备订单号、金额、状态等字段绑定校验逻辑",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.125,
+      "max_score": 1
+    },
+    {
+      "id": "static.auth_code_protection",
+      "name": "付款码不应明文持久化或打印",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.125,
+      "max_score": 1
+    },
+    {
+      "id": "integ.app_start",
+      "name": "项目可通过 start.sh 构建并启动",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.invoice_create",
+      "name": "可创建 POS invoice",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.barcode_pay_success",
+      "name": "付款码成功收款后 invoice 置 Paid",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.wrong_amount_reject",
+      "name": "错金额不得推进支付成功",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.wait_not_paid",
+      "name": "WAIT/处理中状态不得当作成功",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.fail_not_paid",
+      "name": "失败/关闭状态不得当作成功",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.unsigned_reject",
+      "name": "无签名通知/响应不得推进支付成功",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.duplicate_idempotent",
+      "name": "重复通知/重复提交幂等",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.terminal_state_protected",
+      "name": "终态不被旧事件覆盖",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.query_compensation",
+      "name": "未知/处理中走查询补偿而非直接成功",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.query_code_only_not_paid",
+      "name": "仅凭查询响应 code=10000 不得推进支付成功",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.request_idempotency_key",
+      "name": "资金请求有稳定幂等标识",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.amount_accounting_rule",
+      "name": "订单金额、支付金额口径一致",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.f2f_10003_polling",
+      "name": "付款码 10003/WAIT_BUYER_PAY 需要轮询查询",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.f2f_goods_amount_match",
+      "name": "付款码金额与商品明细总额一致",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.f2f_unpaid_cancel",
+      "name": "未支付付款码交易保留撤销/关闭处理边界",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.auth_code_not_plaintext",
+      "name": "auth_code 不明文落库或进日志",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.unpaid_refund_reject",
+      "name": "未支付订单不得退款且不得调用退款网关",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.partial_refund_success",
+      "name": "已支付订单支持部分退款且保持支付终态",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.full_refund_terminal",
+      "name": "全额退款后进入明确退款终态",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.refund_same_request_idempotent",
+      "name": "同一次退款重试使用相同 out_request_no 且不重复退款",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.refund_multi_request_distinct",
+      "name": "多次部分退款使用不同 out_request_no 且累计正确",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.refund_fund_change_required",
+      "name": "退款不能只凭 code=10000 成功，必须确认 fund_change=Y",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "integ.refund_unknown_query",
+      "name": "退款未知/处理中通过退款查询确认而非直接成功",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.083333333333,
+      "max_score": 1
+    },
+    {
+      "id": "e2e.login_works",
+      "name": "收银台基础鉴权/健康检查可用",
+      "type": "deterministic",
+      "source_phase": "e2e",
+      "weight": 0.666666666667,
+      "max_score": 1
+    },
+    {
+      "id": "e2e.pos_flow_to_payment_entry",
+      "name": "创建 bill 后可进入对应支付宝支付页/入口",
+      "type": "deterministic",
+      "source_phase": "e2e",
+      "weight": 0.666666666667,
+      "max_score": 1
+    },
+    {
+      "id": "e2e.status_refresh_control",
+      "name": "支付页具备稳定状态刷新/查询能力",
+      "type": "deterministic",
+      "source_phase": "e2e",
+      "weight": 0.666666666667,
+      "max_score": 1
+    },
+    {
+      "id": "e2e.no_mock_controls_visible",
+      "name": "支付页不暴露 mock 成功按钮或结果下拉",
+      "type": "deterministic",
+      "source_phase": "e2e",
+      "weight": 0.125,
+      "max_score": 1
+    },
+    {
+      "id": "llm.notify_security_semantics",
+      "name": "语义上正确处理通知验签与字段绑定",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.2,
+      "max_score": 1
+    },
+    {
+      "id": "llm.pending_fail_closed_semantics",
+      "name": "语义上 pending/fail/异常保持 fail-closed",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.2,
+      "max_score": 1
+    },
+    {
+      "id": "llm.idempotency_terminal_semantics",
+      "name": "语义上具备幂等与终态保护",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.2,
+      "max_score": 1
+    },
+    {
+      "id": "llm.refund_reverse_semantics",
+      "name": "语义上正确处理退款、撤销/关闭边界和退款幂等",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.2,
+      "max_score": 1
+    },
+    {
+      "id": "llm.secret_management_semantics",
+      "name": "语义上保护密钥和付款码敏感信息",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.2,
+      "max_score": 1
+    }
+  ]
+}

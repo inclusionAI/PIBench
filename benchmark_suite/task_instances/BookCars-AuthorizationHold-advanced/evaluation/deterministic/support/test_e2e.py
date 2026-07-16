@@ -1,0 +1,248 @@
+#!/usr/bin/env python3
+"""E2E tests for BookCars Alipay Preauthorization Advanced (E1: QR code display)."""
+import json
+import os
+import sys
+import time
+
+FRONTEND_URL = "http://localhost:9104"
+TEST_USER_EMAIL = "driver1@bookcars.ma"
+TEST_USER_PASSWORD = "B00kC4r5"
+RESULTS = []
+
+
+def record(rid, name, passed, message):
+    RESULTS.append({
+        "id": rid, "name": name, "type": "e2e",
+        "passed": bool(passed), "score": 1 if passed else 0, "max_score": 1,
+        "message": str(message)[:1000],
+    })
+    print(f"  [{'PASS' if passed else 'FAIL'}] {rid}: {name} -- {message[:200]}")
+
+
+def load_test_ids(output_dir):
+    path = os.path.join(output_dir, "test_ids.json")
+    try:
+        return json.loads(open(path).read())
+    except (OSError, ValueError):
+        return {}
+
+
+QR_ELEMENT_SCRIPT = """() => {
+    const visibleSize = (el) => {
+        const rect = el.getBoundingClientRect();
+        const width = rect.width || Number(el.getAttribute('width')) || el.naturalWidth || 0;
+        const height = rect.height || Number(el.getAttribute('height')) || el.naturalHeight || 0;
+        return { width, height };
+    };
+    const looksLargeEnough = (el) => {
+        const { width, height } = visibleSize(el);
+        return width >= 80 && height >= 80;
+    };
+    const hasQrHint = (el) => {
+        const text = [
+            el.getAttribute('aria-label'),
+            el.getAttribute('title'),
+            el.getAttribute('alt'),
+            el.getAttribute('src'),
+            el.getAttribute('data-value'),
+            el.getAttribute('data-url'),
+        ].filter(Boolean).join(' ');
+        return /qr|qrcode|qr-code|alipay|alipays:\\/\\//i.test(text);
+    };
+
+    for (const svg of document.querySelectorAll('svg')) {
+        const pathCount = svg.querySelectorAll('path, rect').length;
+        if (looksLargeEnough(svg) && (pathCount >= 2 || hasQrHint(svg))) {
+            return 'svg';
+        }
+    }
+    for (const canvas of document.querySelectorAll('canvas')) {
+        if (looksLargeEnough(canvas) || hasQrHint(canvas)) {
+            return 'canvas';
+        }
+    }
+    for (const img of document.querySelectorAll('img')) {
+        if (hasQrHint(img) && looksLargeEnough(img)) {
+            return 'img';
+        }
+    }
+    return null;
+}"""
+
+
+def find_qr_payload(page):
+    """Return (qr_found, desc, alipays_payload)."""
+    desc = page.evaluate(QR_ELEMENT_SCRIPT)
+
+    payload = page.evaluate("""() => {
+        const el = document.querySelector('[data-value], [data-url]');
+        if (el) {
+            const v = el.getAttribute('data-value') || el.getAttribute('data-url');
+            if (v && v.startsWith('alipays://')) return v;
+        }
+        const m = document.documentElement.outerHTML.match(/alipays:\\/\\/[^"'<>\\s\\\\]*/);
+        return m ? m[0] : null;
+    }""")
+    return desc is not None, desc or "", payload
+
+
+def find_alipays_value(obj):
+    """Find an alipays:// value anywhere in a JSON-like object."""
+    if isinstance(obj, dict):
+        for key in ("schemeUrl", "scheme_url", "schemeURL", "url"):
+            value = obj.get(key)
+            if isinstance(value, str) and value.startswith("alipays://"):
+                return value
+        for value in obj.values():
+            found = find_alipays_value(value)
+            if found:
+                return found
+    elif isinstance(obj, list):
+        for value in obj:
+            found = find_alipays_value(value)
+            if found:
+                return found
+    elif isinstance(obj, str) and obj.startswith("alipays://"):
+        return obj
+    return None
+
+
+def latest_freeze_payload(freeze_responses):
+    for item in reversed(freeze_responses):
+        payload = find_alipays_value(item.get("json"))
+        if payload:
+            return payload
+    return None
+
+
+def run_e2e(workspace, output_dir):
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        record("E1", "预订流程 QR code", False, "INFRA: Playwright not installed")
+        return
+
+    ids = load_test_ids(output_dir)
+    car_id = ids.get("carId", "")
+    loc_id = ids.get("locationId", "")
+    e1_passed, e1_msg = False, ""
+    freeze_responses = []
+
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
+            context = browser.new_context(viewport={"width": 1440, "height": 900})
+            page = context.new_page()
+            page.set_default_timeout(20000)
+
+            def capture_freeze_response(response):
+                if "/api/alipay/freeze/" not in response.url:
+                    return
+                item = {"url": response.url, "status": response.status, "json": None, "error": ""}
+                try:
+                    item["json"] = response.json()
+                except Exception as e:
+                    item["error"] = str(e)
+                freeze_responses.append(item)
+
+            page.on("response", capture_freeze_response)
+
+            # Sign in
+            print("  E2E: signing in...")
+            page.goto(f"{FRONTEND_URL}/sign-in", timeout=60000)
+            page.wait_for_load_state("networkidle", timeout=30000)
+            page.fill('input[type="email"], input[name="email"]', TEST_USER_EMAIL)
+            page.fill('input[type="password"], input[name="password"]', TEST_USER_PASSWORD)
+            page.click('button[type="submit"]')
+            page.wait_for_load_state("networkidle", timeout=30000)
+            time.sleep(2)
+            page.screenshot(path=os.path.join(output_dir, "e2e_1_signin.png"))
+            signin_failed = not page.evaluate("""() => !!window.localStorage.getItem('bc-fe-user')""")
+            if signin_failed:
+                error_text = page.evaluate("""() => {
+                    const body = document.body ? document.body.innerText : '';
+                    if (/incorrect email or password/i.test(body)) return 'Incorrect email or password';
+                    if (/not allowed by cors/i.test(body)) return 'CORS blocked frontend origin';
+                    return body.slice(0, 160);
+                }""")
+                e1_msg = f"Sign-in failed before checkout: {error_text}"
+
+            # Navigate to checkout
+            checkout_loaded = False
+            if signin_failed:
+                pass
+            elif car_id and loc_id:
+                print("  E2E: navigating to checkout...")
+                page.goto(f"{FRONTEND_URL}/", timeout=60000)
+                page.wait_for_load_state("networkidle", timeout=30000)
+                page.evaluate("""([carId, locId]) => {
+                    const from = new Date(Date.now() + 86400000);
+                    const to = new Date(Date.now() + 3 * 86400000);
+                    const usr = { carId, pickupLocationId: locId, dropOffLocationId: locId, from, to };
+                    const st = { usr, key: 'e2e-test', idx: (window.history.state && window.history.state.idx || 0) + 1 };
+                    window.history.pushState(st, '', '/checkout');
+                    window.dispatchEvent(new PopStateEvent('popstate', { state: st }));
+                }""", [car_id, loc_id])
+                try:
+                    page.wait_for_selector(".checkout-form, form", timeout=30000)
+                    checkout_loaded = True
+                except Exception:
+                    pass
+                page.wait_for_load_state("networkidle", timeout=30000)
+                time.sleep(2)
+            else:
+                page.goto(f"{FRONTEND_URL}/checkout", timeout=60000)
+                page.wait_for_load_state("networkidle", timeout=30000)
+
+            page.screenshot(path=os.path.join(output_dir, "e2e_2_checkout.png"))
+
+            if checkout_loaded:
+                print("  E2E: submitting booking form...")
+                try:
+                    tos = page.query_selector('.checkout-tos input[type="checkbox"]')
+                    if tos:
+                        tos.check()
+                    submit = page.query_selector('form button[type="submit"]')
+                    if submit:
+                        submit.click()
+                except Exception as e:
+                    print(f"  E2E: form issue: {e}")
+                for _ in range(12):
+                    time.sleep(5)
+                    _, _, payload = find_qr_payload(page)
+                    if payload or latest_freeze_payload(freeze_responses):
+                        break
+                page.screenshot(path=os.path.join(output_dir, "e2e_3_after_submit.png"))
+
+            if not signin_failed:
+                qr_found, qr_desc, payload = find_qr_payload(page)
+                freeze_payload = latest_freeze_payload(freeze_responses)
+                if payload or freeze_payload:
+                    e1_passed = True
+                    e1_msg = (
+                        f"Alipay payload found: page_payload={'yes' if payload else 'no'}, "
+                        f"freeze_payload={'yes' if freeze_payload else 'no'}, qr={qr_desc or 'none'}"
+                    )
+                else:
+                    e1_msg = f"No alipays:// payload found; qr={qr_desc or 'none'}"
+            browser.close()
+    except Exception as e:
+        if not e1_msg:
+            e1_msg = f"E2E error: {e}"
+
+    record("E1", "预订流程 QR code", e1_passed, e1_msg)
+
+
+def main():
+    workspace = sys.argv[1] if len(sys.argv) > 1 else "/workspace"
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else "/output"
+    run_e2e(workspace, output_dir)
+    os.makedirs(output_dir, exist_ok=True)
+    with open(os.path.join(output_dir, "e2e_results.json"), "w") as f:
+        json.dump(RESULTS, f, ensure_ascii=False, indent=2)
+    print(f"\nE2E tests: {sum(1 for r in RESULTS if r['passed'])}/{len(RESULTS)} passed")
+
+
+if __name__ == "__main__":
+    main()

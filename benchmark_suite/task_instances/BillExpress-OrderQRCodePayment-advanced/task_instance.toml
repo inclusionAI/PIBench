@@ -1,0 +1,16 @@
+[task_instance]
+name = "BillExpress-OrderQRCodePayment-advanced"
+display_name = "Bill Express 订单码支付安全加固"
+description = "对已接入订单码支付的 Bill Express 收银台做安全加固：验签、金额/订单绑定、查询补偿、重复通知幂等和失败状态 fail-closed。"
+difficulty = "hard"
+project = "BillExpress"
+product = "OrderQRCodePayment"
+scenario = "advanced"
+timeout_sec = 5400
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]

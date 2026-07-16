@@ -1,0 +1,16 @@
+[task_instance]
+name = "LaravelGymie-JSAPIPayment-advanced"
+display_name = "支付宝小程序 JSAPI 会员卡支付 - 交易安全、退款与金额口径"
+description = "在一个已存在但故意不安全的 Laravel 支付宝小程序 JSAPI 支付链路上做资金安全与正确性加固：客户端回调不可信、通知验签与字段校验、订单归属、查单补偿、防重复支付、退款/部分退款幂等、金额口径与终态保护。"
+difficulty = "hard"
+project = "LaravelGymie"
+product = "JSAPIPayment"
+scenario = "advanced"
+timeout_sec = 5400
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]

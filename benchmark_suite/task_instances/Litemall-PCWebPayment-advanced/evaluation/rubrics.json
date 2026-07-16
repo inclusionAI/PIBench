@@ -1,0 +1,328 @@
+{
+  "rubrics": [
+    {
+      "id": "static.secret_no_hardcode",
+      "name": "无硬编码密钥材料",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "static.secret_gitignore",
+      "name": ".gitignore 排除敏感文件",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "static.refund_sdk_usage",
+      "name": "退款使用 SDK (AlipayTradeRefundRequest)",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "integ.app_boot",
+      "name": "应用构建启动",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.prepay_form",
+      "name": "prepay 返回支付宝表单",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.prepay_hits_mock",
+      "name": "prepay 请求到达 mock 网关",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.notify_rejects_unsigned",
+      "name": "无签名通知被拒",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.notify_rejects_wrong_amount",
+      "name": "金额篡改通知被拒",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.notify_rejects_wrong_appid",
+      "name": "app_id 篡改通知被拒",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.notify_signed_success",
+      "name": "有效签名通知通过",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.notify_idempotent",
+      "name": "通知幂等",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.terminal_not_downgraded",
+      "name": "终态不被覆盖",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.return_url_not_final",
+      "name": "return_url 不作终态",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.query_endpoint",
+      "name": "查询端点存在",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.refund_endpoint",
+      "name": "退款端点存在",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.notify_wrong_order",
+      "name": "不存在订单号的通知被拒",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.prepay_out_trade_no_matches",
+      "name": "prepay 使用真实订单号",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.refund_idempotent",
+      "name": "退款幂等 (out_request_no)",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.refund_partial_sequence",
+      "name": "部分退款请求号与金额",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.refund_over_amount_rejected",
+      "name": "超额退款被拒",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.refund_cumulative_over_amount_rejected",
+      "name": "累计超额退款被拒",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.refund_fund_change_n_not_final",
+      "name": "fund_change=N 不作为最终退款",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.query_unknown_not_paid",
+      "name": "查询未知/待支付不入账",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.paid_order_close_rejected",
+      "name": "已支付订单不能关单",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.close_failure_not_cancelled",
+      "name": "关单失败不取消本地订单",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "integ.close_endpoint",
+      "name": "关单端点存在",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.086956521739
+    },
+    {
+      "id": "E1",
+      "name": "前端支付宝选项",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "frontend",
+      "max_score": 1,
+      "weight": 1.0
+    },
+    {
+      "id": "E2",
+      "name": "支付跳转",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "frontend",
+      "max_score": 1,
+      "weight": 1.0
+    },
+    {
+      "id": "L1_notify_signature",
+      "name": "异步通知验签",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "L2_notify_field_validation",
+      "name": "异步通知关键字段校验",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "L3_notify_idempotency_terminal",
+      "name": "通知幂等与终态保护",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "L4_return_url_query_compensation",
+      "name": "return_url 不履约与查询补偿",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "L5_refund_request_no",
+      "name": "退款请求号与部分退款",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "L6_refund_query_uncertain",
+      "name": "退款查询与不确定状态处理",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "L7_close_paid_boundary",
+      "name": "关单与已支付边界",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "L8_secret_management",
+      "name": "密钥管理",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.125
+    }
+  ]
+}

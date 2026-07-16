@@ -1,0 +1,196 @@
+{
+  "rubrics": [
+    {
+      "id": "static.jsapi_safety_dep_sdk",
+      "name": "使用支付宝 SDK/开放接口完成 JSAPI 交易链路",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_stable_endpoint_security",
+      "name": "保留题面固定 API 入口",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_no_fake_bypass",
+      "name": "不通过伪造成功绕过支付安全校验",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_secret_safe_safety",
+      "name": "凭证不硬编码、不提交环境密钥",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_state_machine_model",
+      "name": "订单状态机区分支付、失败、全额退款和部分退款",
+      "dimension": "correctness",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_buyer_owner_guard",
+      "name": "交易回查和通知处理包含买家/订单归属保护",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_query_compensation",
+      "name": "同步/补偿入口主动调用查单确认最终状态",
+      "dimension": "correctness",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "static.jsapi_refund_idempotency_accounting",
+      "name": "退款具备幂等请求号和实际资金变动口径",
+      "dimension": "correctness",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_runtime_boot",
+      "name": "Laravel 服务可迁移并启动",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_create_order_contract",
+      "name": "JSAPI 下单返回可拉起交易字段",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_client_result_not_final",
+      "name": "客户端支付结果不能作为最终成功",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_sync_pending_not_fake_paid",
+      "name": "查单处理中不能伪造成支付成功",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_terminal_state_guard",
+      "name": "已支付终态不能被客户端失败覆盖",
+      "dimension": "correctness",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_invalid_notify_rejected",
+      "name": "非法异步通知不能入账",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_signed_notify_field_mismatch_rejected",
+      "name": "合法签名但关键字段不匹配不能入账",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_notify_idempotent_no_double_fulfillment",
+      "name": "重复成功通知不能重复履约",
+      "dimension": "correctness",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_unpaid_refund_rejected",
+      "name": "未支付订单不能退款且不得调用退款网关",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_partial_refund_accounting",
+      "name": "部分退款不能直接记为全额退款",
+      "dimension": "correctness",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_refund_out_request_no",
+      "name": "退款使用外部幂等请求号且不能重复累计",
+      "dimension": "correctness",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_refund_fund_change_required",
+      "name": "退款成功接口但资金未变动不能累计退款",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_refund_same_request_no_amount_conflict",
+      "name": "同一退款请求号不能用不同金额覆盖原记录",
+      "dimension": "correctness",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_cumulative_over_refund_rejected",
+      "name": "多次部分退款累计超额必须拒绝",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_full_refund_terminal_not_reopened",
+      "name": "全额退款终态不能被后续支付成功覆盖",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    },
+    {
+      "id": "integration.jsapi_over_refund_rejected",
+      "name": "超额退款必须拒绝且不改写资金状态",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "weight": 0.125
+    }
+  ]
+}

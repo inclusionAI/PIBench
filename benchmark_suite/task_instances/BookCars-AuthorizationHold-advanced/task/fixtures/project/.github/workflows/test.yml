@@ -1,0 +1,170 @@
+name: test
+
+on:
+  push:
+    branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+    environment: test
+    
+    strategy:
+      matrix:
+        node-version: [lts/*]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: Run tests
+      run: |
+           cd ./backend
+           touch .env
+           echo NODE_ENV=$NODE_ENV >> .env
+           echo BC_CI=$BC_CI >> .env
+           echo BC_HTTPS=$BC_HTTPS >> .env
+           echo BC_DB_URI=$BC_DB_URI >> .env
+           echo BC_DB_SSL=$BC_DB_SSL >> .env
+           echo BC_COOKIE_SECRET=$BC_COOKIE_SECRET >> .env
+           echo BC_AUTH_COOKIE_DOMAIN=$BC_AUTH_COOKIE_DOMAIN >> .env
+           echo BC_JWT_SECRET=$BC_JWT_SECRET >> .env
+           echo BC_JWT_EXPIRE_AT=$BC_JWT_EXPIRE_AT >> .env
+           echo BC_TOKEN_EXPIRE_AT=$BC_TOKEN_EXPIRE_AT >> .env
+           echo BC_SMTP_HOST=$BC_SMTP_HOST >> .env
+           echo BC_SMTP_PORT=$BC_SMTP_PORT >> .env
+           echo BC_SMTP_USER=$BC_SMTP_USER >> .env
+           echo BC_SMTP_PASS=$BC_SMTP_PASS >> .env
+           echo BC_SMTP_FROM=$BC_SMTP_FROM >> .env
+           echo BC_DEFAULT_LANGUAGE=$BC_DEFAULT_LANGUAGE >> .env
+           echo BC_CDN_USERS=$BC_CDN_USERS >> .env
+           echo BC_CDN_TEMP_USERS=$BC_CDN_TEMP_USERS >> .env
+           echo BC_CDN_CARS=$BC_CDN_CARS >> .env
+           echo BC_CDN_TEMP_CARS=$BC_CDN_TEMP_CARS >> .env
+           echo BC_CDN_LOCATIONS=$BC_CDN_LOCATIONS >> .env
+           echo BC_CDN_TEMP_LOCATIONS=$BC_CDN_TEMP_LOCATIONS >> .env
+           echo BC_CDN_CONTRACTS=$BC_CDN_CONTRACTS >> .env
+           echo BC_CDN_TEMP_CONTRACTS=$BC_CDN_TEMP_CONTRACTS >> .env
+           echo BC_CDN_LICENSES=$BC_CDN_LICENSES >> .env
+           echo BC_CDN_TEMP_LICENSES=$BC_CDN_TEMP_LICENSES >> .env           
+           echo BC_ADMIN_HOST=$BC_ADMIN_HOST >> .env
+           echo BC_FRONTEND_HOST=$BC_FRONTEND_HOST >> .env
+           echo BC_MINIMUM_AGE=$BC_MINIMUM_AGE >> .env
+           echo BC_EXPO_ACCESS_TOKEN=$BC_EXPO_ACCESS_TOKEN >> .env
+           echo BC_STRIPE_SECRET_KEY=$BC_STRIPE_SECRET_KEY >> .env
+           echo BC_PAYPAL_CLIENT_ID=$BC_PAYPAL_CLIENT_ID >> .env
+           echo BC_PAYPAL_CLIENT_SECRET=$BC_PAYPAL_CLIENT_SECRET >> .env
+           echo BC_ADMIN_EMAIL=$BC_ADMIN_EMAIL >> .env
+           npm install
+           npm test
+      env:
+        NODE_ENV: ${{ vars.NODE_ENV }}
+        BC_CI: ${{ vars.BC_CI }}
+        BC_HTTPS: ${{ vars.BC_HTTPS }}
+        BC_DB_URI: ${{ secrets.BC_DB_URI }}
+        BC_DB_SSL: ${{ vars.BC_DB_SSL }}
+        BC_DB_DEBUG: ${{ vars.BC_DB_DEBUG }}
+        BC_COOKIE_SECRET: ${{ secrets.BC_COOKIE_SECRET }}
+        BC_AUTH_COOKIE_DOMAIN: ${{ vars.BC_AUTH_COOKIE_DOMAIN }}
+        BC_JWT_SECRET: ${{ secrets.BC_JWT_SECRET }}
+        BC_JWT_EXPIRE_AT: ${{ vars.BC_JWT_EXPIRE_AT }}
+        BC_TOKEN_EXPIRE_AT: ${{ vars.BC_TOKEN_EXPIRE_AT }}
+        BC_SMTP_HOST: ${{ secrets.BC_SMTP_HOST }}
+        BC_SMTP_PORT: ${{ secrets.BC_SMTP_PORT }}
+        BC_SMTP_USER: ${{ secrets.BC_SMTP_USER }}
+        BC_SMTP_PASS: ${{ secrets.BC_SMTP_PASS }}
+        BC_SMTP_FROM: ${{ secrets.BC_SMTP_FROM }}
+        BC_DEFAULT_LANGUAGE: ${{ vars.BC_DEFAULT_LANGUAGE }}
+        BC_CDN_USERS: ${{ vars.BC_CDN_USERS }}
+        BC_CDN_TEMP_USERS: ${{ vars.BC_CDN_TEMP_USERS }}
+        BC_CDN_CARS: ${{ vars.BC_CDN_CARS }}
+        BC_CDN_TEMP_CARS: ${{ vars.BC_CDN_TEMP_CARS }}
+        BC_CDN_LOCATIONS: ${{ vars.BC_CDN_LOCATIONS }}
+        BC_CDN_TEMP_LOCATIONS: ${{ vars.BC_CDN_TEMP_LOCATIONS }}
+        BC_CDN_CONTRACTS: ${{ vars.BC_CDN_CONTRACTS }}
+        BC_CDN_TEMP_CONTRACTS: ${{ vars.BC_CDN_TEMP_CONTRACTS }}
+        BC_CDN_LICENSES: ${{ vars.BC_CDN_LICENSES }}
+        BC_CDN_TEMP_LICENSES: ${{ vars.BC_CDN_TEMP_LICENSES }}      
+        BC_ADMIN_HOST: ${{ vars.BC_ADMIN_HOST }}
+        BC_FRONTEND_HOST: ${{ vars.BC_FRONTEND_HOST }}
+        BC_MINIMUM_AGE: ${{ vars.BC_MINIMUM_AGE }}
+        BC_EXPO_ACCESS_TOKEN: ${{ secrets.BC_EXPO_ACCESS_TOKEN }}
+        BC_STRIPE_SECRET_KEY: ${{ secrets.BC_STRIPE_SECRET_KEY }}
+        BC_PAYPAL_CLIENT_ID: ${{ secrets.BC_PAYPAL_CLIENT_ID }}
+        BC_PAYPAL_CLIENT_SECRET: ${{ secrets.BC_PAYPAL_CLIENT_SECRET }}
+        BC_ADMIN_EMAIL: ${{ vars.BC_ADMIN_EMAIL }}
+
+    # - name: Show coverage report content
+    #   run: |
+    #       echo "----- coverage.cobertura.xml -----"
+    #       cat ./backend/coverage/cobertura-coverage.xml
+
+    - name: Upload coverage reports to Codecov
+      id: codecov
+      continue-on-error: true
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./cobertura-coverage.xml
+        directory: ./backend/coverage
+        # fail_ci_if_error: true
+        # verbose: true
+
+    - name: Notify Codecov Status in case of failure
+      if: steps.codecov.outcome != 'success'
+      uses: actions/github-script@v7
+      with:
+          script: |
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'codecov-tracking',
+              state: 'closed'
+            });
+            
+            for (const issue of issues.data) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: '⚠️ Codecov upload failed in workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+              });
+            }
+          
+    - name: Upload coverage reports to Coveralls
+      id: coveralls
+      continue-on-error: true
+      uses: coverallsapp/github-action@v2
+      with:
+        file: ./backend/coverage/cobertura-coverage.xml
+        base-path: backend
+        # fail-on-error: true
+        measure: true
+
+    - name: Notify Coveralls Status in case of failure
+      if: steps.coveralls.outcome != 'success'
+      uses: actions/github-script@v7
+      with:
+        script: |
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'coveralls-tracking',
+              state: 'closed'
+            });
+            
+            for (const issue of issues.data) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: '⚠️ Coveralls upload failed in workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+              });
+            }

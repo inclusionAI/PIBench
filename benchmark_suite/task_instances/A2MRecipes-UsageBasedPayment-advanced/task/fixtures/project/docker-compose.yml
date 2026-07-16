@@ -1,0 +1,19 @@
+services:
+  a2m-recipes-security:
+    build: .
+    container_name: a2m-recipes-security
+    ports:
+      - "5002:5000"
+    environment:
+      PORT: "5000"
+      COZE_PROJECT_ENV: PROD
+      A2M_APP_ID: ${A2M_APP_ID:-}
+      A2M_SELLER_ID: ${A2M_SELLER_ID:-}
+      A2M_SELLER_NAME: ${A2M_SELLER_NAME:-宝宝辅食精选}
+      A2M_SERVICE_ID: ${A2M_SERVICE_ID:-}
+      A2M_MERCHANT_PRIVATE_KEY: ${A2M_MERCHANT_PRIVATE_KEY:-}
+      A2M_ALIPAY_PUBLIC_KEY: ${A2M_ALIPAY_PUBLIC_KEY:-}
+      A2M_GATEWAY_URL: ${A2M_GATEWAY_URL:-}
+      A2M_PAYMENT_AMOUNT: ${A2M_PAYMENT_AMOUNT:-0.01}
+      A2M_PAYMENT_CURRENCY: ${A2M_PAYMENT_CURRENCY:-CNY}
+      A2M_ALLOW_EPHEMERAL_TEST_KEYS: ${A2M_ALLOW_EPHEMERAL_TEST_KEYS:-false}

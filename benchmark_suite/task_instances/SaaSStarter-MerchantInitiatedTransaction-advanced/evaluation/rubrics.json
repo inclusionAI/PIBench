@@ -1,0 +1,301 @@
+{
+  "rubrics": [
+    {
+      "id": "static.dep_sdk",
+      "name": "支付宝 SDK 或 RSA2 能力",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.142857142857
+    },
+    {
+      "id": "static.secret_storage",
+      "name": "无真实密钥或 token 硬编码",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.142857142857
+    },
+    {
+      "id": "static.secret_gitignore",
+      "name": ".gitignore 排除敏感材料",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.142857142857
+    },
+    {
+      "id": "static.no_app_internal_mock",
+      "name": "无业务内置 mock 网关和 demo 控件",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.142857142857
+    },
+    {
+      "id": "static.gateway_env",
+      "name": "支付宝网关由环境变量注入",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.142857142857
+    },
+    {
+      "id": "static.notify_signature_hook",
+      "name": "通知验签逻辑存在且无无条件放行",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.142857142857
+    },
+    {
+      "id": "static.field_binding_logic",
+      "name": "通知关键字段绑定校验痕迹",
+      "type": "deterministic",
+      "legacy_type": "static",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.142857142857
+    },
+    {
+      "id": "integ.dep_build",
+      "name": "项目可构建并启动",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.success_accept",
+      "name": "有效签约和扣款通知通过",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.wrong_amount_reject",
+      "name": "错误金额通知不得成功",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.wrong_agreement_reject",
+      "name": "错误协议号通知不得成功",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.wrong_user_reject",
+      "name": "错误用户通知不得成功",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.unsigned_notify_reject",
+      "name": "无签名签约通知不得激活",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.bad_signature_reject",
+      "name": "错误签名签约通知不得激活",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.duplicate_notify_idempotent",
+      "name": "重复扣款通知幂等",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.pending_not_final",
+      "name": "pending/10003 不得作为最终成功",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.gateway_error_fail_closed",
+      "name": "网关错误 fail-closed",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.query_methods_available",
+      "name": "未知扣款状态触发权威查询补偿",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "functionality",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.async_acceptance_not_final",
+      "name": "扣款接口受理不等于最终扣款成功",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.sync_success_not_final",
+      "name": "同步成功码不作为最终扣款成功",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.terminal_not_overwritten",
+      "name": "终态不被旧通知覆盖",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.no_repeat_pay_before_confirm",
+      "name": "上一笔未确认前不得重复扣款",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.deduct_limit",
+      "name": "扣款金额不得超过协议约定",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "integ.request_idempotency_keys",
+      "name": "扣款请求号与业务单据绑定且避免同周期混用",
+      "type": "deterministic",
+      "legacy_type": "integration",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.117647058824
+    },
+    {
+      "id": "e2e.pricing_page",
+      "name": "pricing 页面可访问",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "frontend",
+      "max_score": 1,
+      "weight": 0.5
+    },
+    {
+      "id": "e2e.subscribe_entry",
+      "name": "存在自然支付宝订阅入口",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "frontend",
+      "max_score": 1,
+      "weight": 0.5
+    },
+    {
+      "id": "e2e.status_observable",
+      "name": "订阅状态 API 可观察",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "frontend",
+      "max_score": 1,
+      "weight": 0.5
+    },
+    {
+      "id": "e2e.no_demo_controls",
+      "name": "前端没有 mock/demo 控件",
+      "type": "deterministic",
+      "legacy_type": "e2e",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.5
+    },
+    {
+      "id": "llm.L1_signature_semantics",
+      "name": "验签语义",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "llm.L2_field_binding",
+      "name": "字段绑定",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "llm.L3_state_separation",
+      "name": "签约和扣款状态分离",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "correctness",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "llm.L4_idempotency_terminal",
+      "name": "幂等和终态保护",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.2
+    },
+    {
+      "id": "llm.L5_retry_unsign_limits",
+      "name": "重试边界和解约停止",
+      "type": "llm_assisted",
+      "legacy_type": "llm",
+      "dimension": "security",
+      "max_score": 1,
+      "weight": 0.2
+    }
+  ]
+}

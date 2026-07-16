@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+KIT_DIR="$(cd "$BIN_DIR/.." && pwd)"
+PYTHON_BIN="${PAYSKILLS_RUNNER_PYTHON:-python3}"
+
+export PYTHONPATH="$KIT_DIR${PYTHONPATH:+:$PYTHONPATH}"
+exec "$PYTHON_BIN" -m payskills_runtime.runner "$@"

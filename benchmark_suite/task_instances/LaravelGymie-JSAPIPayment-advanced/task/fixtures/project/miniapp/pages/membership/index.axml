@@ -1,0 +1,64 @@
+<view class="page">
+  <view class="header">
+    <view class="kicker">Gymie Club</view>
+    <view class="title">Membership Cards</view>
+    <view class="subtitle">Choose a card, create an Alipay JSAPI trade, and pay inside this Mini Program.</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">Plans</view>
+    <view class="plan-list">
+      <block a:for="{{plans}}" a:key="id">
+        <view
+          class="{{selectedPlanId == item.id ? 'plan-card selected' : 'plan-card'}}"
+          data-id="{{item.id}}"
+          onTap="selectPlan"
+        >
+          <view class="plan-main">
+            <view class="plan-name">{{item.name}}</view>
+            <view class="plan-days">{{item.days}} days</view>
+          </view>
+          <view class="plan-price">CNY {{item.amount}}</view>
+          <view class="plan-description">{{item.description}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">Buyer</view>
+    <input class="input" data-field="buyerName" value="{{form.buyerName}}" placeholder="Name" onInput="handleInput" />
+    <input class="input" data-field="buyerContact" value="{{form.buyerContact}}" placeholder="Phone" onInput="handleInput" />
+    <input class="input" data-field="buyerEmail" value="{{form.buyerEmail}}" placeholder="Email" onInput="handleInput" />
+
+    <view class="identity-row">
+      <input class="input identity-input" data-field="buyerOpenId" value="{{form.buyerOpenId}}" placeholder="buyer_open_id for sandbox" onInput="handleInput" />
+      <button class="ghost-button" size="mini" onTap="getAuthCode">Auth</button>
+    </view>
+    <view a:if="{{form.buyerAuthCode}}" class="auth-code">Auth code ready</view>
+  </view>
+
+  <view class="section order-panel">
+    <view class="status">{{statusText}}</view>
+    <view a:if="{{order}}" class="order-lines">
+      <view>Order: {{order.out_trade_no}}</view>
+      <view>Trade: {{order.tradeNO}}</view>
+      <view>Status: {{order.status}}</view>
+      <view a:if="{{order.member}}">Member: {{order.member.code}} / {{order.member.name}}</view>
+      <view a:if="{{order.invoice_id}}">Invoice: {{order.invoice_id}}</view>
+    </view>
+
+    <button class="primary-button" loading="{{creating}}" disabled="{{creating || paying}}" onTap="createOrder">
+      Create JSAPI Trade
+    </button>
+    <button a:if="{{order && order.status === 'waiting_payment' && !demoMode}}" class="primary-button" loading="{{paying}}" onTap="payOrder">
+      Pay with Alipay
+    </button>
+    <button a:if="{{order && order.status === 'waiting_payment' && demoMode}}" class="primary-button" loading="{{paying}}" onTap="completeDemoPayment">
+      Complete Demo Payment
+    </button>
+    <button a:if="{{order && order.status === 'paid'}}" class="secondary-button" loading="{{refunding}}" onTap="refundOrder">
+      Refund Order
+    </button>
+  </view>
+</view>

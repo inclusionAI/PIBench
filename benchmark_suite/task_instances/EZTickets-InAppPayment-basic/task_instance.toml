@@ -1,0 +1,24 @@
+[task_instance]
+name = "EZTickets-InAppPayment-basic"
+display_name = "电影票支付宝付款 - 基础集成"
+description = "在 EZ Tickets（Node.js/Express/MySQL 后端 + Flutter 前端）中接入支付宝 App 支付基础链路：服务端签名生成支付参数、交易状态确认、支付成功落库并确认 booking、前端新增支付宝选项并对接接口。"
+difficulty = "standard"
+project = "EZTickets"
+product = "InAppPayment"
+scenario = "basic"
+timeout_sec = 7200
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]
+
+[[runtime_inputs]]
+id = "alipay_sandbox"
+schema = "alipay.sandbox.v1"
+required = true
+deliver_as = "file"
+env = "ALIPAY_SANDBOX_KEYS_FILE"
+workspace_path = "alipay-sandbox-keys.json"

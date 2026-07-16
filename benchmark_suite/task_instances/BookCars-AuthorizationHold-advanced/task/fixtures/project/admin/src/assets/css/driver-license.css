@@ -1,0 +1,22 @@
+div.driver-license {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+div.driver-license .filename {
+  width: 100%;
+  margin-right: 5px;
+  color: #666;
+}
+
+div.driver-license div.actions {
+  display: flex;
+  flex-direction: row;
+}
+
+@media only screen and (width <=960px) {
+  div.driver-license .filename {
+    width: 210px;
+  }
+}

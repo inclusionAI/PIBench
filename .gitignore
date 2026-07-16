@@ -1,0 +1,15 @@
+# PaySkills exported package local artifacts.
+runs/
+logs/
+
+# Local secrets and overrides.
+.env
+config/.env
+llm_config.json
+
+# Python and editor noise.
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+.DS_Store

@@ -1,0 +1,16 @@
+[task_instance]
+name = "EDoc-MobileWebPayment-advanced"
+display_name = "eDoc H5 支付链路资金安全加固"
+description = "对 eDoc 医生预约系统的支付宝 H5/WAP 支付链路做安全与资金正确性加固：前台回跳/退出不可信、通知验签、查单补偿、防重复支付、退款资金校验与部分退款幂等。"
+difficulty = "hard"
+project = "EDoc"
+product = "MobileWebPayment"
+scenario = "advanced"
+timeout_sec = 3600
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]

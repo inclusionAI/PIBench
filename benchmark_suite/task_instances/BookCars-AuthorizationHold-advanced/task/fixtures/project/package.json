@@ -1,0 +1,41 @@
+{
+  "name": "bookcars",
+  "version": "8.8.0",
+  "description": "Car Rental Booking System",
+  "keywords": [
+    "react",
+    "react-native",
+    "mongodb",
+    "stripe",
+    "paypal",
+    "car-rental",
+    "car-rental-system",
+    "aggregator",
+    "bookcars"
+  ],
+  "homepage": "https://github.com/aelassas/bookcars#readme",
+  "bugs": {
+    "url": "https://github.com/aelassas/bookcars/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aelassas/bookcars.git"
+  },
+  "funding": "https://github.com/sponsors/aelassas",
+  "author": "Akram El Assas",
+  "license": "MIT",
+  "type": "module",
+  "main": "pre-commit.js",
+  "scripts": {
+    "pre-commit": "node pre-commit.js",
+    "releases": "node releases.js",
+    "prepare": "husky install",
+    "lint": "eslint . --cache --cache-location .eslintcache"
+  },
+  "devDependencies": {
+    "chalk": "^5.4.1",
+    "eslint": "^9.27.0",
+    "husky": "^9.1.7",
+    "p-limit": "^6.2.0"
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "rubrics": [
+    {
+      "id": "S1",
+      "name": "后端支付宝能力（SDK 或 RSA2 签名）",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "S2",
+      "name": "前端支付宝拉起能力（tobias 或等效插件）",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "S3",
+      "name": "前后端支付方式枚举包含支付宝",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "S4",
+      "name": "服务端生成支付参数并通过 API 返回",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "S5",
+      "name": "后端具备支付宝交易状态查询路径",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "S6",
+      "name": "支付成功后落库并确认 booking 的代码路径",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "S7",
+      "name": "Flutter 从支付宝返回后调用后端确认接口",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "I1",
+      "name": "后端基础测试（npm test）",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "integration",
+      "max_score": 1,
+      "weight": 1.0
+    },
+    {
+      "id": "I2",
+      "name": "创建支付宝支付请求",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "integration",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "I3",
+      "name": "支付状态确认",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "integration",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "I4",
+      "name": "支付宝未成功时不确认订单",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "integration",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "I5",
+      "name": "支付成功后确认绑定 booking",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "integration",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "I6",
+      "name": "支付确认不误确认其他 booking",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "integration",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "I7",
+      "name": "App 支付金额来自服务端 booking",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "integration",
+      "max_score": 1,
+      "weight": 0.333333333333
+    },
+    {
+      "id": "S8",
+      "name": "支付方式选择器中包含支付宝选项",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "S9",
+      "name": "Flutter 对接后端创建支付和确认支付接口",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "S10",
+      "name": "Flutter 处理成功/失败/取消/处理中等支付结果状态",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "phase": "static",
+      "max_score": 1,
+      "weight": 0.1
+    },
+    {
+      "id": "L1",
+      "name": "产品选择合理",
+      "dimension": "code_quality",
+      "type": "llm_assisted",
+      "phase": "llm",
+      "max_score": 1,
+      "weight": 0.25
+    },
+    {
+      "id": "L2",
+      "name": "签名位置正确",
+      "dimension": "code_quality",
+      "type": "llm_assisted",
+      "phase": "llm",
+      "max_score": 1,
+      "weight": 0.25
+    },
+    {
+      "id": "L3",
+      "name": "后端确认闭环",
+      "dimension": "code_quality",
+      "type": "llm_assisted",
+      "phase": "llm",
+      "max_score": 1,
+      "weight": 0.25
+    },
+    {
+      "id": "L4",
+      "name": "前后端串联",
+      "dimension": "code_quality",
+      "type": "llm_assisted",
+      "phase": "llm",
+      "max_score": 1,
+      "weight": 0.25
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[task_instance]
+name = "LaravelGymie-JSAPIPayment-basic"
+display_name = "支付宝小程序会员卡购买 - JSAPI 基础接入"
+description = "在 Gymie 健身房会员系统上补齐支付宝小程序内付款能力：服务端创建小程序收银台交易并返回 tradeNO，小程序端唤起原生支付，可信通知推进订单并完成会员履约。"
+difficulty = "standard"
+project = "LaravelGymie"
+product = "JSAPIPayment"
+scenario = "basic"
+timeout_sec = 3600
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]
+
+[[runtime_inputs]]
+id = "alipay_sandbox"
+schema = "alipay.sandbox.v1"
+required = true
+deliver_as = "file"
+env = "ALIPAY_SANDBOX_KEYS_FILE"
+workspace_path = "alipay-sandbox-keys.json"

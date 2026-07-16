@@ -1,0 +1,23 @@
+[task_instance]
+name = "EDoc-MobileWebPayment-basic"
+display_name = "eDoc H5/WAP 支付宝付款基础接入"
+description = "在 eDoc 医生预约系统中为患者预约流程补齐移动网页支付宝付款链路：待支付下单、移动跳转入口、服务端可信确认。"
+difficulty = "standard"
+project = "EDoc"
+product = "MobileWebPayment"
+scenario = "basic"
+timeout_sec = 3600
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]
+
+[[runtime_inputs]]
+id = "alipay_sandbox"
+schema = "alipay.sandbox.v1"
+required = true
+deliver_as = "file"
+env = "ALIPAY_SANDBOX_KEYS_FILE"

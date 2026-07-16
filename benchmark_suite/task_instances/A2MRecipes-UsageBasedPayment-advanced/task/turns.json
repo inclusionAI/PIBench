@@ -1,0 +1,9 @@
+{
+  "turns": [
+    {
+      "id": "turn_1",
+      "user": "请对 A2M proof 验证与资源履约流程做安全加固（详见任务说明 / instruction.md）：严格校验凭证、绑定资源与订单、校验金额与收款方、防重放与重复履约、履约确认幂等、异常 fail-closed，并保留现有 GET /api/recipes 与 GET /api/recipes/:id 入口与 Payment-Needed / Payment-Proof / Payment-Validation header 契约。",
+      "context": "单轮编码任务。agent 直接修改项目仓库源码；run.sh 会在 agent 完成后构建并启动服务，test.sh 通过 HTTP 探活 + 静态检查 + LLM 代码审查评分。"
+    }
+  ]
+}

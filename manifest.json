@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "layout": "exported-src-v1",
+  "runner": "payskills-runtime-kit",
+  "runner_path": "src/bin/payskills-run",
+  "entrypoint": "./run.sh",
+  "commands": {
+    "run": "./run.sh",
+    "init": "./run.sh --init",
+    "doctor": "./run.sh --doctor",
+    "dry_run": "./run.sh --dry-run",
+    "help": "./run.sh --help"
+  },
+  "task_instance_contract": {
+    "root": "benchmark_suite/task_instances",
+    "required_paths": [
+      "task_instance.toml",
+      "task/Dockerfile",
+      "task/run.sh",
+      "evaluation/evaluate.sh",
+      "evaluation/rubrics.json"
+    ],
+    "legacy_rejected": [
+      "environment/Dockerfile",
+      "run.sh",
+      "test.sh"
+    ]
+  },
+  "config_contract": {
+    "path": "config/config.yaml",
+    "example_path": "config/config.example.yaml",
+    "env_example_path": "config/.env.example",
+    "required_sections": [
+      "run",
+      "agent",
+      "judge",
+      "env",
+      "docker"
+    ],
+    "secret_fields_are_env_names": [
+      "agent.api_key_env",
+      "judge.api_key_env"
+    ]
+  },
+  "helper_contract": {
+    "bin_dir": "src/bin",
+    "helpers": [
+      "payskills-agent",
+      "payskills-judge",
+      "payskills-diff",
+      "payskills-result"
+    ]
+  },
+  "artifact_contract": {
+    "run_index": "runs/<timestamp>/summary.json",
+    "task_instance_result": "runs/<timestamp>/<task-instance-label>/result.json",
+    "task_instance_execution": "runs/<timestamp>/<task-instance-label>/execution.json",
+    "logs": "runs/<timestamp>/<task-instance-label>/logs/",
+    "artifacts": "runs/<timestamp>/<task-instance-label>/artifacts/",
+    "agent_trace": "artifacts/agent_trace.json",
+    "agent_evidence": "artifacts/agent_evidence.json",
+    "agent_events": "artifacts/agent_events.jsonl",
+    "patch": "artifacts/patch.diff",
+    "changed_files": "artifacts/changed_files.txt",
+    "code_files": "artifacts/code_files/"
+  },
+  "name": "alipay-pibench",
+  "runtime_source_path": "src",
+  "benchmark_suite_path": "benchmark_suite",
+  "selected_version": "v0",
+  "exported_at": "2026-07-13T05:26:32.990201+00:00",
+  "source_benchmark_suite": "alipay-pibench"
+}

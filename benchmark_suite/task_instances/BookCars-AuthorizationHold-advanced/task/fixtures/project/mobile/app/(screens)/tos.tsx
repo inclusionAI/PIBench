@@ -1,0 +1,62 @@
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, ScrollView } from 'react-native'
+import { useLocalSearchParams } from 'expo-router'
+import { useIsFocused } from '@react-navigation/native'
+
+import i18n from '@/lang/i18n'
+import * as UserService from '@/services/UserService'
+import Layout from '@/components/Layout'
+import * as helper from '@/utils/helper'
+
+const ToSScreen = () => {
+  const isFocused = useIsFocused()
+  const { d } = useLocalSearchParams<{ d: string }>()
+
+  const [reload, setReload] = useState(false)
+  const [visible, setVisible] = useState(false)
+
+  const _init = async () => {
+    setVisible(false)
+    const language = await UserService.getLanguage()
+    i18n.locale = language
+    setVisible(true)
+  }
+
+  useEffect(() => {
+    if (isFocused) {
+      _init()
+      setReload(true)
+    } else {
+      setVisible(false)
+    }
+  }, [d, isFocused])
+
+  const onLoad = () => {
+    setReload(false)
+  }
+
+  return (
+    <Layout style={styles.master} onLoad={onLoad} reload={reload}>
+      {visible && (
+        <ScrollView
+          contentContainerStyle={styles.container}
+          keyboardShouldPersistTaps={helper.android() ? 'handled' : 'always'}
+        >
+          <Text style={{ fontSize: 16 }}>ToS!</Text>
+        </ScrollView>
+      )}
+    </Layout>
+  )
+}
+
+const styles = StyleSheet.create({
+  master: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+})
+
+export default ToSScreen

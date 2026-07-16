@@ -1,0 +1,37 @@
+services:
+  web:
+    build: .
+    ports:
+      - "${APP_PORT:-8131}:80"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: edoc
+      DB_USER: edoc
+      DB_PASSWORD: edoc
+      APP_BASE_URL: "${APP_BASE_URL:-http://localhost:8131}"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mariadb:10.5
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: edoc
+      MYSQL_USER: edoc
+      MYSQL_PASSWORD: edoc
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./SQL_Database_edoc.sql:/docker-entrypoint-initdb.d/001_edoc.sql:ro
+
+volumes:
+  db_data:

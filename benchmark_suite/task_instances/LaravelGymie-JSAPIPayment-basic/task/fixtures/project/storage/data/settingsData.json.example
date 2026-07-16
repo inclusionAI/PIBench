@@ -1,0 +1,37 @@
+{
+    "general": {
+        "locale": "",
+        "gym_logo": [],
+        "currency": "",
+        "gym_name": "",
+        "financial_year_start": "",
+        "financial_year_end": "",
+        "gym_email": "",
+        "gym_contact": "",
+        "address": "",
+        "country": "",
+        "state": "",
+        "city": "",
+        "zip": ""
+    },
+    "invoice": {
+        "prefix": "",
+        "last_number": "",
+        "name_type": ""
+    },
+    "member": {
+        "prefix": "",
+        "last_number": ""
+    },
+    "charges": {
+        "admission_fee": "",
+        "taxes": "",
+        "discounts": []
+    },
+    "expenses": {
+        "categories": []
+    },
+    "subscriptions": {
+        "expiring_days": 7
+    }
+}

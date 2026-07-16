@@ -1,0 +1,16 @@
+[task_instance]
+name = "BillExpress-OrderQRCodePayment-basic"
+display_name = "Bill Express 订单码支付基础接入"
+description = "在 Bill Express 线下收银台中接入支付宝订单码支付：创建 invoice 后调用 alipay.trade.precreate 生成二维码支付单，并能查询确认交易状态。"
+difficulty = "standard"
+project = "BillExpress"
+product = "OrderQRCodePayment"
+scenario = "basic"
+timeout_sec = 5400
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]

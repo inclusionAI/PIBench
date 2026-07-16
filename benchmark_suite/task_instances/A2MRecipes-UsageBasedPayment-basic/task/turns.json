@@ -1,0 +1,9 @@
+{
+  "turns": [
+    {
+      "id": "turn_1",
+      "user": "请完成该编码任务。修改当前 A2M Recipes 项目，使其满足任务说明中的 AI 收付费资源访问接入要求。完成后请简要说明你改了什么，以及你做过哪些验证。",
+      "context": "单轮编码任务。agent 直接修改项目仓库源码；evaluation 会运行静态检查、构建启动、HTTP/mock 网关集成测试和 LLM-assisted evaluation。"
+    }
+  ]
+}

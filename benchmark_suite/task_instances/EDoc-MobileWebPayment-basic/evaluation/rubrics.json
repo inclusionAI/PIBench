@@ -1,0 +1,121 @@
+{
+  "rubrics": [
+    {
+      "id": "wap_dep_sdk",
+      "name": "支付客户端能力 (S1)",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "存在支付宝 SDK/OpenAPI 客户端、RSA2 签名或等价 HTTP 调用封装；不能只写本地 fake 成功。",
+      "weight": 0.25
+    },
+    {
+      "id": "wap_config_env",
+      "name": "运行时配置来自环境/配置 (S2)",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "App ID、网关、私钥、公钥、return_url、notify_url、quit_url 来自环境变量或配置而非硬编码。",
+      "weight": 0.25
+    },
+    {
+      "id": "wap_secret_safe",
+      "name": "密钥安全 (S3)",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "仓库中不包含真实私钥、证书、token 或敏感 .env。",
+      "weight": 0.25
+    },
+    {
+      "id": "wap_stable_endpoint",
+      "name": "固定接口落位 (S4)",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "支付创建和通知逻辑挂在固定 endpoint 文件上 (payment.php / pay.php / notify.php)。",
+      "weight": 0.25
+    },
+    {
+      "id": "wap_build_runtime",
+      "name": "服务启动 (I1)",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "health.php 返回 200 且 ok=true。",
+      "weight": 0.222222222222
+    },
+    {
+      "id": "wap_create_payment_entry",
+      "name": "支付入口创建 (I2)",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "待支付预约可创建绑定当前订单的 payment_url，并返回 pending / 99.00 / CNY。",
+      "weight": 0.222222222222
+    },
+    {
+      "id": "wap_payment_handoff",
+      "name": "付款跳转 (I3)",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "桌面端展示绑定当前订单的可继续支付或复制入口。",
+      "weight": 0.222222222222
+    },
+    {
+      "id": "wap_wap_request_shape",
+      "name": "手机网站支付请求 (I8)",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "移动端支付入口生成 alipay.trade.wap.pay 请求，包含 QUICK_WAP_WAY、当前订单、金额、回跳/通知/退出地址和 RSA2 签名。",
+      "weight": 0.222222222222
+    },
+    {
+      "id": "wap_sandbox_gateway_accepts",
+      "name": "沙箱网关接受 (I9)",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "生成的手机网站支付请求可提交到支付宝沙箱网关并被接受；不要求真实买家完成付款。",
+      "weight": 0.222222222222
+    },
+    {
+      "id": "wap_return_not_final",
+      "name": "回跳不可信 (I4)",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "return 页不依赖前台回跳直接把预约确认支付。",
+      "weight": 0.222222222222
+    },
+    {
+      "id": "wap_quit_url_flow",
+      "name": "退出不终态 (I5)",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "quit 页不依赖用户退出直接把预约改成失败或取消。",
+      "weight": 0.222222222222
+    },
+    {
+      "id": "wap_notify_endpoint",
+      "name": "通知入口校验 (I6)",
+      "dimension": "security",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "无效签名 / 金额不符的通知返回 400 且响应体为 fail。",
+      "weight": 0.222222222222
+    },
+    {
+      "id": "wap_notify_or_query_confirm",
+      "name": "服务端确认 (I7)",
+      "dimension": "functionality",
+      "type": "deterministic",
+      "max_score": 1,
+      "description": "有效通知返回 success、落库推进预约/支付状态；重复通知幂等仍返回 success。",
+      "weight": 0.222222222222
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+name: Test PR and Push
+on:
+  pull_request:
+    branches: [release,dev,master, test/**]
+jobs:
+  build:
+    name: Test APK
+    runs-on: ubuntu-latest
+    steps:
+    - name: Wait For Generate Goldens Workflow To Complete
+      uses: fountainhead/action-wait-for-check@v1.0.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        checkName: generate-goldens
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+        intervalSeconds: 20
+        timeoutSeconds: 1200
+    - uses: actions/checkout@v2
+    - name: Setup Java JDK
+      uses: actions/setup-java@v2.2.0
+      with:
+        distribution: 'adopt'
+        java-version: '12.x'
+    - name: Checkout Flutter Stable Channel
+      uses: subosito/flutter-action@v1.5.3
+      with:
+        channel: 'stable'
+    - name: Get Pub Dependencies
+      run: flutter pub get
+    - name: Run Build Runner For Codegen Files
+      run: flutter packages pub run build_runner build --delete-conflicting-outputs
+    - name: Run Dart Analyzer
+      run: flutter analyze .
+    - name: Generate coverage helper script
+      run: sh ./coverage_helper_script.bash
+    - name: Run tests
+      run: flutter test --coverage
+    - name: Check Very Good Coverage
+      uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+      with:
+        path: "./coverage/lcov.info"
+        min_coverage: 13
+        exclude: "**/*.freezed.dart **/*.g.dart **/*.gr.dart **/*.mocks.dart **/constants.dart **/custom_theme.dart **/assets_helper.dart **/routes.dart"
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2.0.2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage/lcov.info
+        verbose: true
+    - name: Attempt Debug APK Build
+      run: flutter build apk --debug --dart-define=BASE_URL=${{ secrets.BASE_URL }}

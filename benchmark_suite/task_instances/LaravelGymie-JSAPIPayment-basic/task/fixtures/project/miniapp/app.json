@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "pages/membership/index"
+  ],
+  "window": {
+    "defaultTitle": "Gym Membership",
+    "titleBarColor": "#111827",
+    "backgroundColor": "#F7F8FA"
+  }
+}

@@ -1,0 +1,304 @@
+{
+  "rubrics": [
+    {
+      "id": "integ_notify_reject",
+      "name": "通知验签",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 10.0
+    },
+    {
+      "id": "notify_verify_fields",
+      "name": "通知字段校验",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 5.0
+    },
+    {
+      "id": "unique_id_check",
+      "name": "幂等性检查",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 10.0
+    },
+    {
+      "id": "close_cancel_boundary",
+      "name": "cancel/unfreeze 区分",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 5.0
+    },
+    {
+      "id": "secret_storage",
+      "name": "无硬编码私钥",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 5.0
+    },
+    {
+      "id": "secret_gitignore",
+      "name": ".gitignore 含 .env",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 5.0
+    },
+    {
+      "id": "preauth_pay_auth_no",
+      "name": "冻结转支付用授权号",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 15.0
+    },
+    {
+      "id": "preauth_freeze_amount",
+      "name": "转支付金额校验",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 5.0
+    },
+    {
+      "id": "gateway_business_success_check",
+      "name": "网关业务成功码校验",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 5.0
+    },
+    {
+      "id": "preauth_unfreeze_required",
+      "name": "解冻接口实现",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 15.0
+    },
+    {
+      "id": "preauth_confirm_mode",
+      "name": "确认模式",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 5.0
+    },
+    {
+      "id": "preauth_init_poll_cancel",
+      "name": "轮询/INIT状态处理",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 10.0
+    },
+    {
+      "id": "preauth_cancel_vs_unfreeze",
+      "name": "超时撤销",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.076923076923,
+      "max_score": 5.0
+    },
+    {
+      "id": "I1",
+      "name": "应用启动",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I2",
+      "name": "freeze 打到 mock",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I3",
+      "name": "无签名通知被拒",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I4",
+      "name": "错误 app_id 通知被拒",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I5",
+      "name": "有效签名通知通过",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I6",
+      "name": "通知幂等",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I7",
+      "name": "终态保护",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I8",
+      "name": "unfreeze 端点",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I9",
+      "name": "query 打到 mock",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I10",
+      "name": "转支付携带 auth_no",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I11",
+      "name": "解冻请求含稳定 out_request_no",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I12",
+      "name": "不存在预订号的通知被拒",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I13",
+      "name": "签名通知字段错配被拒",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I14",
+      "name": "转支付后解冻剩余金额",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I15",
+      "name": "未消费前不能解冻",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I16",
+      "name": "撤销与解冻边界",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "I17",
+      "name": "query 非成功态不能入账/解锁",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.117647058824,
+      "max_score": 1.0
+    },
+    {
+      "id": "E1",
+      "name": "预订流程 QR code",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "e2e",
+      "weight": 2.0,
+      "max_score": 1.0
+    },
+    {
+      "id": "L1",
+      "name": "转支付金额校验",
+      "dimension": "quality",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.5,
+      "max_score": 1.0
+    },
+    {
+      "id": "L2",
+      "name": "解冻时机合理",
+      "dimension": "quality",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.5,
+      "max_score": 1.0
+    }
+  ],
+  "metadata": {
+    "scoring_policy": "legacy_bookcars_safety_weighted_v1"
+  }
+}

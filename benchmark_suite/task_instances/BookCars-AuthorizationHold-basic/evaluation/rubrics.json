@@ -1,0 +1,169 @@
+{
+  "rubrics": [
+    {
+      "id": "S1",
+      "name": "SDK/签名客户端",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2,
+      "max_score": 1.0
+    },
+    {
+      "id": "S2",
+      "name": "支付宝预授权入口",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2,
+      "max_score": 1.0
+    },
+    {
+      "id": "S3",
+      "name": "产品码",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2,
+      "max_score": 1.0
+    },
+    {
+      "id": "S4",
+      "name": "路由注册",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2,
+      "max_score": 1.0
+    },
+    {
+      "id": "S5",
+      "name": "前端二维码组件",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "static",
+      "weight": 0.2,
+      "max_score": 1.0
+    },
+    {
+      "id": "I0",
+      "name": "应用启动",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.222222222222,
+      "max_score": 1.0
+    },
+    {
+      "id": "I1",
+      "name": "登录成功",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.222222222222,
+      "max_score": 1.0
+    },
+    {
+      "id": "I2",
+      "name": "freeze 端点",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.222222222222,
+      "max_score": 1.0
+    },
+    {
+      "id": "I3",
+      "name": "query 端点",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.222222222222,
+      "max_score": 1.0
+    },
+    {
+      "id": "I4",
+      "name": "notify 端点",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.222222222222,
+      "max_score": 1.0
+    },
+    {
+      "id": "I5",
+      "name": "freeze 后保存预授权标识",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.222222222222,
+      "max_score": 1.0
+    },
+    {
+      "id": "I6",
+      "name": "notify 后更新预授权状态",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.222222222222,
+      "max_score": 1.0
+    },
+    {
+      "id": "I7",
+      "name": "freeze-query-notify 使用同一预授权标识",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.222222222222,
+      "max_score": 1.0
+    },
+    {
+      "id": "I8",
+      "name": "冻结成功后 booking 进入可服务状态",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "integration",
+      "weight": 0.222222222222,
+      "max_score": 1.0
+    },
+    {
+      "id": "E1",
+      "name": "预订流程二维码",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "e2e",
+      "weight": 1.0,
+      "max_score": 1.0
+    },
+    {
+      "id": "E2",
+      "name": "二维码内容 alipays://",
+      "dimension": "quality",
+      "type": "deterministic",
+      "source_phase": "e2e",
+      "weight": 1.0,
+      "max_score": 1.0
+    },
+    {
+      "id": "L1",
+      "name": "真实预授权链路设计",
+      "dimension": "quality",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.5,
+      "max_score": 1.0
+    },
+    {
+      "id": "L2",
+      "name": "预授权身份绑定与状态模型",
+      "dimension": "quality",
+      "type": "llm_assisted",
+      "source_phase": "llm",
+      "weight": 0.5,
+      "max_score": 1.0
+    }
+  ],
+  "metadata": {
+    "scoring_policy": "legacy_bookcars_basic_weighted_v1"
+  }
+}

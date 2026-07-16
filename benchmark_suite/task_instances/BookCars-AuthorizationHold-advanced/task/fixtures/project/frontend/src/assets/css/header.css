@@ -1,0 +1,109 @@
+/* Header */
+.header {
+  /* position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0; 
+  z-index: 1400; */
+  transform: translate3d(0, 0, 0);
+}
+
+.menu {
+  z-index: 1401 !important;
+}
+
+.menu div.language,
+.btn div.language {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flag {
+  width: 24px;
+  margin-right: 10px;
+}
+
+.menu .menu-lnk {
+  color: #1a1a1a;
+}
+
+.side-menu li {
+  cursor: pointer;
+}
+
+.side-menu li:hover {
+  background-color: #f1f1f1;
+}
+
+.header-action {
+  margin-right: 20px;
+}
+
+.header-desktop {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header-mobile {
+  display: none;
+}
+
+.header .btn {
+  background-color: transparent !important;
+  color: #121212 !important;
+  text-transform: none !important;
+}
+
+.header .btn:hover {
+  background-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+.header .btn-auth span.btn-auth-txt {
+  white-space: nowrap;
+}
+
+.header .logo {
+  text-decoration: none;
+  text-transform: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 500;
+  color: #121212;
+}
+
+/* Device width is greater than or equal to 960px */
+
+@media only screen and (width >=960px) {
+  .header {
+    min-height: 64px;
+  }
+}
+
+/* Device width is less than or equal to 960px */
+
+@media only screen and (width <=960px) {
+  .header {
+    min-height: 56px;
+  }
+
+  header .btn {
+    padding: 0 8px;
+    min-width: 0;
+  }
+
+  .header-desktop {
+    display: none;
+  }
+
+  .header-mobile {
+    display: flex;
+    margin-right: -13px;
+  }
+
+  .toolbar {
+    min-height: 56px !important;
+  }
+}

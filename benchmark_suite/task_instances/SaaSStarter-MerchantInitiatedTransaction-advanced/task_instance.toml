@@ -1,0 +1,16 @@
+[task_instance]
+name = "SaaSStarter-MerchantInitiatedTransaction-advanced"
+display_name = "SaaS Starter 商家扣款订阅安全加固"
+description = "在 SaaS Starter 商家扣款订阅最小链路上加固验签、字段绑定、幂等、pending/fail-closed、金额限制和终态保护。"
+difficulty = "hard"
+project = "SaaSStarter"
+product = "MerchantInitiatedTransaction"
+scenario = "advanced"
+timeout_sec = 1800
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]

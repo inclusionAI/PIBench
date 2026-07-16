@@ -1,0 +1,49 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [lts/*]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: Build backend
+      run: |
+           cd ./backend
+           npm install
+           npm run lint
+           npm run build
+    - name: Build admin panel
+      run: |
+           cd ./admin
+           npm install --force
+           npm run lint
+           npm run build
+    - name: Build frontend
+      run: |
+           cd ./frontend
+           npm install --force
+           npm run lint
+           npm run build
+    - name: Build mobile app
+      run: |
+           cd ./mobile
+           npm install
+           npm run lint
+           npm run ts:check

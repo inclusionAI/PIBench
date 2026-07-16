@@ -1,0 +1,9 @@
+{
+  "version": "v0",
+  "id": "v0",
+  "name": "Alipay-PIBench v0",
+  "description": "Open-source benchmark suite for evaluating agent capabilities on Alipay payment integration tasks.",
+  "created_at": "2026-07-04",
+  "status": "ready",
+  "summary": "Contains 18 task instances with deterministic and LLM-assisted evaluations."
+}

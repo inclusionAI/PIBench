@@ -1,0 +1,45 @@
+services:
+    mysql:
+      image: mysql:8.0
+      command: --default-authentication-plugin=mysql_native_password
+      environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        MYSQL_DATABASE: ez_tickets
+      volumes:
+        - ./ez_tickets_backend/ez_tickets.sql:/docker-entrypoint-initdb.d/01-ez_tickets.sql:ro
+      healthcheck:
+        test: ["CMD", "mysqladmin", "ping", "-h", "mysql", "-uroot", "--silent"]
+        interval: 5s
+        timeout: 3s
+        retries: 30
+
+    backend:
+      build:
+        context: .
+        dockerfile: Dockerfile.backend
+      depends_on:
+        mysql:
+          condition: service_healthy
+      ports: 
+        - "3331:3331"
+      working_dir: /workspace/ez_tickets_backend
+      volumes:
+        - .:/workspace
+      environment:
+        PORT: "3331"
+        HOST: "0.0.0.0"
+        DB_HOST: mysql
+        DB_PORT: "3306"
+        DB_USER: root
+        DB_PASS: ""
+        DB_DATABASE: ez_tickets
+        SECRET_JWT: local_dev_secret
+        SENDGRID_API_KEY: SG.local_dev_dummy
+        SENDGRID_SENDER: dev@example.com
+      command: >
+        bash -lc "(npm ci || npm install) && npm start"
+      healthcheck:
+        test: ["CMD", "curl", "-fsS", "http://backend:3331/api/v1/health"]
+        interval: 5s
+        timeout: 3s
+        retries: 30

@@ -1,0 +1,16 @@
+[task_instance]
+name = "A2MRecipes-UsageBasedPayment-advanced"
+display_name = "AI收 A2M Proof 安全加固"
+description = "对已接入 A2M 的食谱服务做 proof 验证与履约安全加固：严格校验凭证、绑定资源/订单/金额/卖家、防重放、履约确认幂等、异常 fail-closed。"
+difficulty = "hard"
+project = "A2MRecipes"
+product = "UsageBasedPayment"
+scenario = "advanced"
+timeout_sec = 5400
+
+[environment]
+dockerfile = "task/Dockerfile"
+workdir = "/workspace"
+
+[skills]
+required = ["alipay-payment-integration"]

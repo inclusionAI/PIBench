@@ -1,0 +1,95 @@
+{
+  "expo": {
+    "name": "BookCars",
+    "version": "8.8.0",
+    "scheme": "bookcars",
+    "slug": "bookcars",
+    "icon": "./assets/icon.png",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "splash": {
+      "backgroundColor": "#f37022",
+      "image": "./assets/splash.png"
+    },
+    "android": {
+      "versionCode": 880,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png"
+      },
+      "icon": "./assets/icon.png",
+      "googleServicesFile": "./google-services.json",
+      "softwareKeyboardLayoutMode": "pan",
+      "package": "com.bookcars",
+      "backgroundColor": "#00000000"
+    },
+    "ios": {
+      "buildNumber": "8.8.0",
+      "supportsTablet": true,
+      "icon": "./assets/icon.png",
+      "bundleIdentifier": "com.bookcars",
+      "googleServicesFile": "./GoogleService-Info.plist"
+    },
+    "plugins": [
+      "expo-localization",
+      "./plugins/usesCleartextTraffic",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#f37022",
+          "image": "./assets/icon.png",
+          "imageWidth": 200
+        }
+      ],
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "MERCHANT_IDENTIFIER",
+          "enableGooglePay": true
+        }
+      ],
+      [
+        "expo-document-picker",
+        {
+          "iCloudContainerEnvironment": "Production"
+        }
+      ],
+      "@react-native-google-signin/google-signin",
+      "expo-apple-authentication",
+      [
+        "react-native-fbsdk-next",
+        {
+          "appID": "FACEBOOK_APP_ID",
+          "clientToken": "FACEBOOK_CLIENT_TOKEN",
+          "displayName": "BookCars",
+          "scheme": "FACEBOOK_SCHEME",
+          "advertiserIDCollectionEnabled": false,
+          "autoLogAppEventsEnabled": false,
+          "isAutoInitEnabled": true
+        }
+      ],
+      "expo-asset",
+      "expo-font",
+      "react-native-fbsdk-next",
+      "@react-native-community/datetimepicker",
+      "expo-router"
+    ],
+    "owner": "aelassas",
+    "extra": {
+      "eas": {
+        "projectId": "fe1ab335-41ae-4a35-960b-0052b493db49"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/fe1ab335-41ae-4a35-960b-0052b493db49"
+    },
+    "experiments": {
+      "tsconfigPaths": true,
+      "typedRoutes": true
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}
+
