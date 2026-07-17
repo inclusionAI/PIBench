@@ -4,7 +4,7 @@
 
 <div align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
-  <!-- <a href="https://arxiv.org/abs/ARXIV_ID"><img src="https://img.shields.io/badge/Technical%20Report-arXiv-b31b1b.svg" alt="Technical Report: arXiv"></a> -->
+  <a href="https://arxiv.org/abs/2607.14573"><img src="https://img.shields.io/badge/Technical%20Report-arXiv-b31b1b.svg" alt="Technical Report: arXiv"></a>
 </div>
 
 <p align="center">
@@ -31,7 +31,7 @@ Alipay-PIBench 是由支付宝提出的仓库级 Benchmark，用于评测 AI Cod
 
 模型能力解释了相当一部分性能差异，并且不同支付产品与 Scenario 的表现并不相同。在 with-skill 条件下，各模型的总体平均 Rubric Pass Rate（RPR）介于 **68.58% 和 91.37%** 之间。Basic 与 Advanced 任务分别反映 Agent 构建支付流程和保持支付安全行为的能力，两者相互补充。
 
-其余研究问题的结果与详细分析请参阅论文（待更新）。
+其余研究问题的结果与详细分析请参阅[论文](https://arxiv.org/abs/2607.14573)。
 
 ## 🚀 快速开始
 

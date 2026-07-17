@@ -4,7 +4,7 @@
 
 <div align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
-  <!-- <a href="https://arxiv.org/abs/ARXIV_ID"><img src="https://img.shields.io/badge/Technical%20Report-arXiv-b31b1b.svg" alt="Technical Report: arXiv"></a> -->
+  <a href="https://arxiv.org/abs/2607.14573"><img src="https://img.shields.io/badge/Technical%20Report-arXiv-b31b1b.svg" alt="Technical Report: arXiv"></a>
 </div>
 
 <p align="center">
@@ -31,7 +31,7 @@ Alipay-PIBench is a repository-level benchmark proposed by Alipay for evaluating
 
 Model capability explains much of the observed performance spread and varies across products and scenarios. Under the with-skill condition, overall mean Rubric Pass Rate (RPR) ranges from **68.58% to 91.37%**. Basic and Advanced tasks provide complementary views of an agent's ability to construct a payment flow and preserve safety-related payment behavior.
 
-For results and detailed analyses of the remaining research questions, please refer to the paper (to be updated).
+For results and detailed analyses of the remaining research questions, please refer to the [paper](https://arxiv.org/abs/2607.14573).
 
 ## 🚀 Quick Start
 
