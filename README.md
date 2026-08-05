@@ -29,7 +29,9 @@ Alipay-PIBench is a repository-level benchmark proposed by Alipay for evaluating
 
 [![Model performance across Alipay payment products and scenarios](assets/main-results.png)](assets/main-results.pdf)
 
-Model capability explains much of the observed performance spread and varies across products and scenarios. Under the with-skill condition, overall mean Rubric Pass Rate (RPR) ranges from **68.58% to 91.37%**. Basic and Advanced tasks provide complementary views of an agent's ability to construct a payment flow and preserve safety-related payment behavior.
+<sub><i>† Post-publication result; not included in the paper's main experiments.</i></sub>
+
+Model capability explains much of the observed performance spread and varies across products and scenarios. Under the with-skill condition, overall mean Rubric Pass Rate (RPR) ranges from **68.58% to 92.72%**. Basic and Advanced tasks provide complementary views of an agent's ability to construct a payment flow and preserve safety-related payment behavior.
 
 For results and detailed analyses of the remaining research questions, please refer to the [paper](https://arxiv.org/abs/2607.14573).
 

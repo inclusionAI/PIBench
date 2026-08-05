@@ -29,7 +29,9 @@ Alipay-PIBench 是由支付宝提出的仓库级 Benchmark，用于评测 AI Cod
 
 [![不同支付宝支付产品和 Scenario 下的模型表现](assets/main-results.png)](assets/main-results.pdf)
 
-模型能力解释了相当一部分性能差异，并且不同支付产品与 Scenario 的表现并不相同。在 with-skill 条件下，各模型的总体平均 Rubric Pass Rate（RPR）介于 **68.58% 和 91.37%** 之间。Basic 与 Advanced 任务分别反映 Agent 构建支付流程和保持支付安全行为的能力，两者相互补充。
+<sub><i>† 论文发布后的补充评测结果，未包含在论文的主要实验中。</i></sub>
+
+模型能力解释了相当一部分性能差异，并且不同支付产品与 Scenario 的表现并不相同。在 with-skill 条件下，各模型的总体平均 Rubric Pass Rate（RPR）介于 **68.58% 和 92.72%** 之间。Basic 与 Advanced 任务分别反映 Agent 构建支付流程和保持支付安全行为的能力，两者相互补充。
 
 其余研究问题的结果与详细分析请参阅[论文](https://arxiv.org/abs/2607.14573)。
 
